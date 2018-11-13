@@ -127,7 +127,7 @@ public class ProjetoJogo {
         escudoTotal = escudoClasse + escudoItem;
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
-
+        //CACHORRO
         
         
         
