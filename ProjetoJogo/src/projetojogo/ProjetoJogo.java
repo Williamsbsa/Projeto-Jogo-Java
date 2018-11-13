@@ -127,33 +127,7 @@ public class ProjetoJogo {
         escudoTotal = escudoClasse + escudoItem;
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
-<<<<<<< HEAD
-<<<<<<< Pedro
-<<<<<<< Pedro
-        //CACHORRO dos inferno lindo e mara
-        
-<<<<<<< Pedro
-=======
->>>>>>> Teste mudanças
-=======
-=======
->>>>>>> master
-
-        //CACHORRO dos inferno e do mal
-        
-
-<<<<<<< HEAD
->>>>>>> cdiem
-        
-        System.out.println("EAE PEDRO");
-=======
-        System.out.println("Cachorero lazarento");
->>>>>>> dweq
-=======
-        
-        System.out.println("Cachorero lazarento");
->>>>>>> master
-        
+        //gg
         
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
