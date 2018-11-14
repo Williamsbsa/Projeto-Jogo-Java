@@ -129,7 +129,7 @@ public class ProjetoJogo {
         System.out.println("Escudo total = "+escudoTotal);
         //CACHORRO dos inferno
         
-        
+        System.out.println("COE WILL");
         
         
         /** cadastrando e listando itens
