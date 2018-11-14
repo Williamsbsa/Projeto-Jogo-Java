@@ -46,13 +46,13 @@ public class ProjetoJogo {
         ItemdeDEF exoaranha = new ItemdeDEF("Exoesqueleto de Aranha Negra","Carapaça muito resistente",55);  
           
         ItemdeATK  machadohiena= new ItemdeATK("Machado poderoso de aventureiro"," Machado poderoso para um aventureiro iniciante",55);  
-        ItemdeDEF  amadurahiena= new ItemdeDEF("Armadura do Guerreiro","Armadura de ferro maciço ",65);  
+        ItemdeDEF  armadurahiena= new ItemdeDEF("Armadura do Guerreiro","Armadura de ferro maciço ",65);  
           
         ItemdeATK  almafa= new ItemdeATK("Alma de Fantasma","Item muito requisitado por Magos iniciantes",30);  
         ItemdeDEF  poeiraf= new ItemdeDEF("Poeira Fantasmagórica","Item não poderoso porém muito bonito",30);  
           
         ItemdeATK  lascadep= new ItemdeATK(" Lasca de Pedra","Criação especial da Gárgula",45);  
-        ItemdeDEF  amaduradep= new ItemdeDEF(" Armadura de Pedra","Tão dura quanto uma Gárgula",60);  
+        ItemdeDEF  armaduradep= new ItemdeDEF(" Armadura de Pedra","Tão dura quanto uma Gárgula",60);  
           
         ItemdeATK  cajmag= new ItemdeATK("Cajado do Mago Cinzento","Não se engane pela aparência, este item é muito poderoso",65);  
         ItemdeDEF  vestesmag= new ItemdeDEF(" Vestes da Academia de Magia","Uniforme da escola de magia mais procurada em todo mundo",45);  
@@ -137,6 +137,98 @@ public class ProjetoJogo {
         Chefao ogro = new Chefao("Ogro Verde","O líder da caverna, que está furioso com a derrota de seu companheiro",25,50,"Este Ogro Verde sempre foi habilidoso desde criança, e nunca cansou de se gabar disso, agora que você está ameaçando seu trono ele não vai deixar barato!!");
         ogro.addItemATK(porreteOgro);
         ogro.addItemDEF(tangaOgro);
+        
+        MonstroNormal morcss = new MonstroNormal(" Morcego Sanguessuga"," O sugador de sangue voador", ,);
+        morcss.addItemATK(presasmorc);
+        morcss.addItemDEF(pelodemorce);
+        MonstroNormal  arann= new MonstroNormal("Aranha Negra","Também conhecida como Viúva Negra", ,);
+        arann.addItemATK(queliceras);
+        arann.addItemDEF(exoaranha);
+        Chefao  hiena= new Chefao("Hiena Mestiça","Um monstro nascido na Floresta do Pesadelo",,,"Com um começo de vida complicado esse a pequenina Hiena teve que aprender a se defender sozinha, atualmente vaga pela Floresta do Pesadelo em busca de aventureiros que possuam itens raros");
+        hiena.addItemATK(machadohiena);
+        hiena.addItemDEF(armadurahiena);
+        
+        MonstroNormal  espec= new MonstroNormal("Espectro","Algum dia foi alguém", ,);
+        espec.addItemATK(almafa);
+        espec.addItemDEF(poeiraf);
+        MonstroNormal  garg= new MonstroNormal(" Gárgula","Coração de pedra", ,);
+        garg.addItemATK(lascadep);
+        garg.addItemDEF(armaduradep);
+        Chefao  magoc= new Chefao(") Mago Confuso","Poderoso Mago que cuida da Torre",,,"Após ser feita uma lavagem cerebral pelo Necromancer enlouqueceu e derrota tudo que entra em sua propriedade");
+        magoc.addItemATK(cajmag);
+        magoc.addItemDEF(vestesmag);
+        
+        MonstroNormal escpv = new MonstroNormal("Escorpião Vermelho"," É muito conhecido por nômades que tentam cruzar o Deserto", ,);
+        escpv.addItemATK(ferraoven);
+        escpv.addItemDEF(carapver);
+        MonstroNormal verme = new MonstroNormal("Verme de Areia do Deserto","Causa muitas mortes pelos buracos na areia", ,);
+        verme.addItemATK(dentesg);
+        verme.addItemDEF(areiap);
+        Chefao  anub= new Chefao("Anubis"," O guardião e guia dos mortos",,,"Anubis percebeu um número anormal de seres sendo enviados ao seu encontro e quis saber o que estava acontecendo, quando chegou até você quis o resolver problema da forma mais rápida possível");
+        anub.addItemATK(bastaodam);
+        anub.addItemDEF(sarcofagop);
+        
+        MonstroNormal  tigreb= new MonstroNormal("Tigre Dente de Sabre Branco","Por seus pelos claros era \"coroado\" como o Rei dos Tigres Dente de Sabre", ,);
+        tigreb.addItemATK(dentedes);
+        tigreb.addItemDEF(tunicab);
+        MonstroNormal  gorila= new MonstroNormal("Gorila Gigante","Um monstro muito temido por vilarejos antigos", ,);
+        gorila.addItemATK(maodeg);
+        gorila.addItemDEF(escudodec);
+        Chefao  rex= new Chefao("Tiranossauro Rex","Também conhecido como o Rei do período Jurássico",,," O Tiranossauro Rex vê tudo que está em sua frente como uma presa, e desta vez não foi diferente ");
+        rex.addItemATK(bastaorex);
+        rex.addItemDEF(esqueletoj);
+        
+        MonstroNormal lc = new MonstroNormal("Leão Congelado"," Um dos guardiões da montanha", ,);
+        lc.addItemATK(harpal);
+        lc.addItemDEF(jubac);
+        MonstroNormal  goleng= new MonstroNormal("Golem de Gelo","Criatura formada apenas de gelo", ,);
+        goleng.addItemATK(estacagel);
+        goleng.addItemDEF(escudogel);
+        Chefao  abomh= new Chefao("Abominável Homem das Neves","Em lugares não gelados é chamado de Pé Grande",,,"Tudo que este monstro não quer é ser visto, no caminho pela montanha você o observou e seguiu até que ele percebesse que estava lá");
+        abomh.addItemATK(furacaogel);
+        abomh.addItemDEF(nevep);
+        
+        MonstroNormal  espc= new MonstroNormal("Espírito das Chamas","Uma chama de fogo viva ", ,);
+        espc.addItemATK(triquei);
+        espc.addItemDEF(escudocinz);
+        MonstroNormal  fenix= new MonstroNormal("Fênix"," Pássaro de fogo muito poderoso com a habilidade de renascer das cinzas após um período de tempo, é bom derrota-lo e correr", ,);
+        fenix.addItemATK(arcofogo);
+        fenix.addItemDEF(armadurachamav);
+        Chefao  dragao= new Chefao("Dragão de Fogo","Dragão com a pele tão forte quanto metal e bafo tão quente quanto um vulcão",,,"Todos os dragões gostam de riquezas, após descobrir uma montanha que possuía um grande tesouro resolveu toma-lo para si e até hoje, séculos depois o protege com sua vida ");
+        dragao.addItemATK(espadaflam);
+        dragao.addItemDEF(couradrag);
+        
+        MonstroNormal cavcab = new MonstroNormal("Cavaleiro sem Cabeça","Um nobre cavaleiro que perdeu a cabeça com o que estava acontecendo na época  ", ,);
+        cavcab.addItemATK(lancacav);
+        cavcab.addItemDEF(cabecaflam);
+        MonstroNormal  hidra= new MonstroNormal("Hidra","Monstro de várias cabeças, quando uma é cortada nascem duas em seu lugar", ,);
+        hidra.addItemATK(cabechidra);
+        hidra.addItemDEF(escamahidra);
+        Chefao  quimera= new Chefao("Quimera","Não somente um monstro, sua inteligência cativa e apavora muitos",,,"Sempre teve como objetivo sair do abismo para poder estudar alguma forma transformar seu corpo à sua vontade, busca aventureiros com itens poderosos que possam tirá-lo de lá");
+        quimera.addItemATK(caudasq);
+        quimera.addItemDEF(cerebroquim);
+        
+        MonstroNormal maxxor = new MonstroNormal("Maxxor","Um monstro verde que pode habitar tanto em ambiente aquático quanto terrestre, suas habilidades consistem em usar sua alma para invocar feitiços", ,);
+        maxxor.addItemATK(chuvap);
+        maxxor.addItemDEF(cancaop);
+        MonstroNormal cavm = new MonstroNormal("Cavalo Marinho Perverso","Nunca tente cavalgar em um desses ", ,);
+        cavm.addItemATK(ferraduraaco);
+        cavm.addItemDEF(chifrecav);
+        Chefao  cthulhu= new Chefao("Cthulhu","Criatura milenar, boatos que ele foi criada junto com o planeta, ou quem sabe ele criou o próprio planeta",,,"Cthulhu achou esse RPG um jogo de criança e cansou de ficar nas sombras, agora pretende te matar com apenas 1 ataque e continuar com seus planos");
+        cthulhu.addItemATK(tentaculoc);
+        cthulhu.addItemDEF(tentaculocd);
+        
+        MonstroNormal  anjc= new MonstroNormal("Anjo Caído","Antigamente chamavam este ser de Deus", ,);
+        anjc.addItemATK(espnegra);
+        anjc.addItemDEF(assasanjo);
+        MonstroNormal necrom = new MonstroNormal("Necromancer","O braço direito do Rei dos Demônios conhecido pelos seus feitos históricos em prol das forças do mal", ,);
+        necrom.addItemATK(cajdonecromante);
+        necrom.addItemDEF(capanecromante);
+        Chefao  reidem= new Chefao(" Rei Demônio"," Durante a criação do universo todas as impurezas dos mundos foram armazenadas em um só local, dando vida ao ser mais diabólico que existe, até o Deus mais poderoso foi subjugado por ele",,," Dominar tudo e a todos é a motivação do ser supremo ");
+        reidem.addItemATK(presennsup);
+        reidem.addItemDEF(presensupr);
+        
+
         
         //Cadastrando Classes para listá-las depois.
         guerreiro.addItemAtk(martelo);
