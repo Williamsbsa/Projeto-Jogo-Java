@@ -128,9 +128,10 @@ public class ProjetoJogo {
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
         
-        System.out.println("COE WILL");
-        
-        
+        System.out.println("MUDANCA DIA 13");
+        //EAE PEDRO CONSEGUIsasa
+        //teste do teste do teste
+         
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
         ItemdeDEF d1 = new ItemdeDEF("Escudo","Escudo enviado de Narnia", 77);
