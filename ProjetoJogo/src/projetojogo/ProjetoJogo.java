@@ -127,9 +127,7 @@ public class ProjetoJogo {
         escudoTotal = escudoClasse + escudoItem;
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
-        
-        System.out.println("COE WILL");
-        
+        //gg cachorro de merda
         
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
