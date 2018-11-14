@@ -128,10 +128,10 @@ public class ProjetoJogo {
         PadraodasClasses mago = new PadraodasClasses("Mago","Força e Defesa um pouco baixos, porém faz conjurações rápidas com suas magias e domina suas armas.",10,15);
         
         //Criando Monstros e seus itens
-        MonstroNormal goblin = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 25,25);
+        MonstroNormal goblin = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 25,75);
         goblin.addItemATK(espadaGob);
         goblin.addItemDEF(armaduraPano);
-        MonstroNormal slime = new MonstroNormal("Slime bebê","Recém nascido que incomoda muito", 25,25);
+        MonstroNormal slime = new MonstroNormal("Slime bebê","Recém nascido que incomoda muito", 25,75);
         slime.addItemATK(ossoRat);
         slime.addItemDEF(escudoGosm);
         Chefao ogro = new Chefao("Ogro Verde","O líder da caverna, que está furioso com a derrota de seu companheiro",25,50,"Este Ogro Verde sempre foi habilidoso desde criança, e nunca cansou de se gabar disso, agora que você está ameaçando seu trono ele não vai deixar barato!!");
@@ -230,9 +230,59 @@ public class ProjetoJogo {
         System.out.println("Sua Saúde começa em 10, você consegue aumentá-la conforme passa de Level.");
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
-        System.out.println("\nAgora, você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
-        ListarFase.listarFase(); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
         
+        System.out.println("\nAgora você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
+        ListarFase.listarFase(); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
+        System.out.print("\nDigite qual monstro deseja atacar (sem acentos): ");
+        String escolhaMonstro;
+        escolhaMonstro = on.nextLine();
+        int forcaMonstro;
+        int escudoMonstro;
+        int indiceMonstro;
+        if (escolhaMonstro.equalsIgnoreCase("goblin")){
+            indiceMonstro = 0;
+            ListarFase.listarMonstrosEscolhido(indiceMonstro);
+            forcaMonstro = ListarFase.forcaTotalMonstro(indiceMonstro);
+            escudoMonstro = ListarFase.escudoTotalMonstro(indiceMonstro);
+            System.out.print("O primeiro turno é seu, digite 1 quando quiser atacar: ");
+            int atacar = on.nextInt();
+            if (atacar == 1){
+                while(escudoMonstro > 0){
+                    escudoMonstro = escudoMonstro - danoTotal;
+                    if (escudoMonstro>0){
+                        System.out.println("Escudo total do monstro = "+ escudoMonstro);
+                    }
+                if (escudoMonstro<= 0){
+                    System.out.println("Escudo do monstro chegou a 0, OU SEJA.. ELIMADO COM SUCESSO !!");
+                }
+                }
+            }
+            System.out.println("Agora é a vez do Monstro, Prepare-se !!");
+            escudoTotal = escudoTotal - forcaMonstro;
+            if (escudoTotal>0){
+                System.out.println("Seu escudo total está em: "+ escudoTotal);
+            }else if(escudoTotal<=0){
+                System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
+            }
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        }else if (escolhaMonstro.equalsIgnoreCase("slime bebe")){
+            indiceMonstro = 1;
+            ListarFase.listarMonstrosEscolhido(indiceMonstro);
+            forcaMonstro = ListarFase.forcaTotalMonstro(indiceMonstro);
+            escudoMonstro = ListarFase.escudoTotalMonstro(indiceMonstro);
+        }
         
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
