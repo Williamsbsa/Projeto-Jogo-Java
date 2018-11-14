@@ -132,7 +132,10 @@ public class ProjetoJogo {
         //EAE PEDRO CONSEGUIsasa
         //teste do teste do teste
         //trabalhando no minha branch WILLIAMS
-         
+            
+        //opio
+        
+        
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
         ItemdeDEF d1 = new ItemdeDEF("Escudo","Escudo enviado de Narnia", 77);
