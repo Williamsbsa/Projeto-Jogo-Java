@@ -247,26 +247,34 @@ public class ProjetoJogo {
             ListarFase.listarMonstrosEscolhido(indiceMonstro);
             forcaMonstro = ListarFase.forcaTotalMonstro(indiceMonstro);
             escudoMonstro = ListarFase.escudoTotalMonstro(indiceMonstro);
-            System.out.print("O primeiro turno é seu, digite 1 quando quiser atacar: ");
-            int atacar = on.nextInt();
-            if (atacar == 1){
-                while(escudoMonstro > 0){
-                    escudoMonstro = escudoMonstro - danoTotal;
-                    if (escudoMonstro>0){
-                        System.out.println("Escudo total do monstro = "+ escudoMonstro);
+            int atacar = 0;
+                while(true){
+                    System.out.print("O primeiro turno é seu, digite 1 quando quiser atacar: ");
+                    atacar = on.nextInt();
+                    if(atacar == 1){
+                        while(escudoMonstro > 0){
+                            escudoMonstro = escudoMonstro - danoTotal;
+                            if (escudoMonstro>0){
+                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+                                System.out.println("Escudo total do monstro = "+ escudoMonstro);
+                            }
+                            else if (escudoMonstro<= 0){
+                                System.out.println("Escudo do monstro chegou a 0, OU SEJA.. ELIMADO COM SUCESSO !!");
+                                break;
+                            }
+                            System.out.println("\nAgora é a vez do Monstro, Prepare-se !!");
+                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+                            escudoTotal = escudoTotal - forcaMonstro;
+                            if (escudoTotal>0){
+                                System.out.println("Seu escudo total está em: "+ escudoTotal);
+                           }else if(escudoTotal<=0){
+                                System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
                     }
-                if (escudoMonstro<= 0){
-                    System.out.println("Escudo do monstro chegou a 0, OU SEJA.. ELIMADO COM SUCESSO !!");
                 }
+                    }
                 }
             }
-            System.out.println("Agora é a vez do Monstro, Prepare-se !!");
-            escudoTotal = escudoTotal - forcaMonstro;
-            if (escudoTotal>0){
-                System.out.println("Seu escudo total está em: "+ escudoTotal);
-            }else if(escudoTotal<=0){
-                System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
-            }
+
             
         
         
@@ -280,7 +288,7 @@ public class ProjetoJogo {
         
         
         
-        }else if (escolhaMonstro.equalsIgnoreCase("slime bebe")){
+        else if (escolhaMonstro.equalsIgnoreCase("slime bebe")){
             indiceMonstro = 1;
             ListarFase.listarMonstrosEscolhido(indiceMonstro);
             forcaMonstro = ListarFase.forcaTotalMonstro(indiceMonstro);
