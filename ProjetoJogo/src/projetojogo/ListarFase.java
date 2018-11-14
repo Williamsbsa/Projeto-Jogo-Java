@@ -47,7 +47,7 @@ public class ListarFase {
             System.out.println("Descricao: "+ CadastrarFase.fases.get(i).descricao);
             System.out.println("Level: "+ CadastrarFase.fases.get(i).level);
             listarMonstrosNormaisDaFase();
-            listarChefaoDaFase();
+            //listarChefaoDaFase();
         }
     }
     

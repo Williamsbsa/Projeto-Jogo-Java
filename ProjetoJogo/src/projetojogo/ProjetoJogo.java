@@ -21,20 +21,20 @@ public class ProjetoJogo {
         ItemdeATK martelo= new ItemdeATK("Martelo de Valhalla","Martelo forjado por Odin, para o equilíbrio do Universo", 30);
         ItemdeDEF escudoRag = new ItemdeDEF("Escudo do Ragnarok", "Escudo enviado para impedir o fim do Mundo.", 75);
         
-        ItemdeATK arco = new ItemdeATK("Arco do cosmos","Boatos cercam a criação deste arco, porém o que sabemos é que muitos poucos sobrevivem com tamanho poder", 45);
+        ItemdeATK arco = new ItemdeATK("Arco do cosmos","Boatos cercam a criação deste arco, porém o que sabemos é que muitos poucos sobrevivem com tamanho poder", 65);
         ItemdeDEF escudoElf= new ItemdeDEF("Ecudo élfico", "Escudo feito pelo ancião da Vila élfica em seus últimos anos de vida.", 65);
         
-        ItemdeATK lamina = new ItemdeATK("Lamina Sanguinária","Parece frágil, porém é a mais perigosa da Europa Ocidental, sendo que na maioria dos casos, 1 corte desta lâmina é capaz de matar.", 50);
-        ItemdeDEF cotaMalha = new ItemdeDEF("Cota de malha", "Pequena e fina camada de proteção, porém agil para movimentação.", 35);
+        ItemdeATK lamina = new ItemdeATK("Lamina Sanguinária","Parece frágil, porém é a mais perigosa da Europa Ocidental, sendo que na maioria dos casos, 1 corte desta lâmina é capaz de matar.", 70);
+        ItemdeDEF cotaMalha = new ItemdeDEF("Cota de malha", "Pequena e fina camada de proteção, porém agil para movimentação.", 45);
         
-        ItemdeATK cetro = new ItemdeATK("Cetro de Rá","Cetro mágico com o acumulo de décadas de concentração da energia de suas vítimas.", 55);
-        ItemdeDEF escudoEner = new ItemdeDEF("Escudo de energia", "Escudo não seria a palavra exata para esta magia incrível, pode não ser tão resistente, porém é de rápida conjuração.", 45);
-        
+        ItemdeATK cetro = new ItemdeATK("Cetro de Rá","Cetro mágico com o acumulo de décadas de concentração da energia de suas vítimas.", 75);
+        ItemdeDEF escudoEner = new ItemdeDEF("Escudo de energia", "Escudo não seria a palavra exata para esta magia incrível, pode não ser tão resistente, porém é de rápida conjuração.", 55);
+         
         ItemdeATK espadaGob = new ItemdeATK("Espada Goblin","Espada forjada em esconderijo Goblin", 15);
         ItemdeDEF armaduraPano= new ItemdeDEF("Armadura de Pano", "Armadura fabricada pela mãe do Goblin.", 10);
         
         ItemdeATK ossoRat = new ItemdeATK("Osso de Ratazana"," Osso da última refeição do pequeno Slime", 10);
-        ItemdeDEF EscudoGosm= new ItemdeDEF("Escudo Gosmento", "Escudo fabricado no primeiro dia da vida do pequeno Slime.", 15);
+        ItemdeDEF escudoGosm= new ItemdeDEF("Escudo Gosmento", "Escudo fabricado no primeiro dia da vida do pequeno Slime.", 15);
         
         ItemdeATK porreteOgro = new ItemdeATK("Porrete de Ogro","Porrete tradicional de Ogro, passado de geração em geração.", 30);
         ItemdeDEF tangaOgro= new ItemdeDEF("Tanga de Ogro", "Tanga para cobrir suas partes íntimas, este Ogro não gosta de armaduras.", 5);
@@ -127,10 +127,16 @@ public class ProjetoJogo {
         PadraodasClasses ladino = new PadraodasClasses("Ladino","Força e Defesa base comuns, porém super agil com armas.",20,20);
         PadraodasClasses mago = new PadraodasClasses("Mago","Força e Defesa um pouco baixos, porém faz conjurações rápidas com suas magias e domina suas armas.",10,15);
         
-        //Criando Monstros
+        //Criando Monstros e seus itens
         MonstroNormal goblin = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 25,25);
+        goblin.addItemATK(espadaGob);
+        goblin.addItemDEF(armaduraPano);
         MonstroNormal slime = new MonstroNormal("Slime bebê","Recém nascido que incomoda muito", 25,25);
+        slime.addItemATK(ossoRat);
+        slime.addItemDEF(escudoGosm);
         Chefao ogro = new Chefao("Ogro Verde","O líder da caverna, que está furioso com a derrota de seu companheiro",25,50,"Este Ogro Verde sempre foi habilidoso desde criança, e nunca cansou de se gabar disso, agora que você está ameaçando seu trono ele não vai deixar barato!!");
+        ogro.addItemATK(porreteOgro);
+        ogro.addItemDEF(tangaOgro);
         
         //Cadastrando Classes para listá-las depois.
         guerreiro.addItemAtk(martelo);
@@ -148,6 +154,13 @@ public class ProjetoJogo {
         mago.addItemAtk(cetro);
         mago.addItemDef(escudoEner);
         CadastrarClasse.addClasse(mago);
+        
+        // cadastrando e listando fases
+        PadraodasFases fase1 = new PadraodasFases("Caverna Escura","Em sua primeira aventura nada melhor do que chegar as cavernas ao redor da vila", 1);
+        CadastrarFase.addMonstroNormal(goblin);
+        CadastrarFase.addMonstroNormal(slime);
+        CadastrarFase.addChefao(ogro);
+        CadastrarFase.addFase(fase1);
         
         //Cadastrando Jogador- INICIO DO JOGO
         System.out.println(">>>>>>>>>>>>>>> BREAKING THE SPACE TIME !! <<<<<<<<<<<<<<<");
@@ -168,15 +181,21 @@ public class ProjetoJogo {
         int escudoItem;
         int danoTotal = 0;
         int escudoTotal = 0;
-        String escolhaCla;
+        int saude;
+        String escolhaCla = null;
         Scanner on = new Scanner(System.in);
+        System.out.println("\nOlá "+nome+" !!");
+        if (idade<21){
+            System.out.println("Você parece um pouco novo para adentrar nessa aventura, mas já que insiste...");
+        }else if (idade>=21){
+            System.out.println("Ora, parece que temos um experiente aqui, pelo menos na idade.. agora resta saber se provará suas habilidades ou não, hmm...");
+        }
         
         while (b==0){
             System.out.print("\nDigite o nome da Classe que escolheu: ");
             escolhaCla = on.nextLine();
-            System.out.println(escolhaCla);
             if (escolhaCla.equalsIgnoreCase("guerreiro")){
-                jogador = new PadraoDoJogador(nome,idade,0,1,0);
+                jogador = new PadraoDoJogador(nome,idade,10,1,0); //nome,idade,saude,level,moeda;
                 jogador.addClasse(guerreiro);
                 break;
                 //b = 1;
@@ -200,24 +219,19 @@ public class ProjetoJogo {
                 //b = 1;
             }
         }
-        
+        System.out.println("\nClasse escolhida: "+escolhaCla);
         danoClasse = jogador.getClasses().get(0).getForca();
         escudoClasse = jogador.getClasses().get(0).getDefesa();
         danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
         escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
         danoTotal = danoClasse + danoItem;
-        escudoTotal = escudoClasse + escudoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        System.out.println("Sua Saúde começa em 10, você consegue aumentá-la conforme passa de Level.");
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
-        
-        System.out.println("MUDANCA DIA 13");
-        //EAE PEDRO CONSEGUIsasa
-        //teste do teste do teste
-        //trabalhando no minha branch WILLIAMS
-            
-        //opio
-        //gysasgsyasagsyasagys
-        
+        System.out.println("\nAgora, você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
+        ListarFase.listarFase(); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
         
         
         /** cadastrando e listando itens
