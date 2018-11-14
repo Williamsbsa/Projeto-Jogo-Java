@@ -39,6 +39,88 @@ public class ProjetoJogo {
         ItemdeATK porreteOgro = new ItemdeATK("Porrete de Ogro","Porrete tradicional de Ogro, passado de geração em geração.", 30);
         ItemdeDEF tangaOgro= new ItemdeDEF("Tanga de Ogro", "Tanga para cobrir suas partes íntimas, este Ogro não gosta de armaduras.", 5);
         
+        ItemdeATK  presasmorc = new ItemdeATK("Presas de Morcego Sanguessuga","Presas que facilitam sugar sangue",40);  
+        ItemdeDEF pelodemorce = new ItemdeDEF("Pelo de Morcego Sanguessuga","Pelos negros que cobrem o corpo todo",20);  
+          
+        ItemdeATK queliceras = new ItemdeATK("Quelíceras da Aranha Negra","Machucam e liberam veneno",45);  
+        ItemdeDEF exoaranha = new ItemdeDEF("Exoesqueleto de Aranha Negra","Carapaça muito resistente",55);  
+          
+        ItemdeATK  machadohiena= new ItemdeATK("Machado poderoso de aventureiro"," Machado poderoso para um aventureiro iniciante",55);  
+        ItemdeDEF  amadurahiena= new ItemdeDEF("Armadura do Guerreiro","Armadura de ferro maciço ",65);  
+          
+        ItemdeATK  almafa= new ItemdeATK("Alma de Fantasma","Item muito requisitado por Magos iniciantes",30);  
+        ItemdeDEF  poeiraf= new ItemdeDEF("Poeira Fantasmagórica","Item não poderoso porém muito bonito",30);  
+          
+        ItemdeATK  lascadep= new ItemdeATK(" Lasca de Pedra","Criação especial da Gárgula",45);  
+        ItemdeDEF  amaduradep= new ItemdeDEF(" Armadura de Pedra","Tão dura quanto uma Gárgula",60);  
+          
+        ItemdeATK  cajmag= new ItemdeATK("Cajado do Mago Cinzento","Não se engane pela aparência, este item é muito poderoso",65);  
+        ItemdeDEF  vestesmag= new ItemdeDEF(" Vestes da Academia de Magia","Uniforme da escola de magia mais procurada em todo mundo",45);  
+          
+        ItemdeATK  ferraoven= new ItemdeATK("Ferrão Venenoso","Contém veneno e mata lentamente",65);  
+        ItemdeDEF  carapver= new ItemdeDEF("Carapaça Vermelha"," Suporta até o calor mais forte do Deserto",55);  
+          
+          
+        ItemdeATK  dentesg= new ItemdeATK("Dentes Giratórios do Verme do Deserto"," Mesmo morto estes dentes continuam a girar pela eternidade, se o portador desejar",70);  
+        ItemdeDEF  areiap= new ItemdeDEF("Areia Processada","Gerada dentro do estômago do Verme",60);  
+          
+        ItemdeATK  bastaodam= new ItemdeATK("Bastão da Morte","Conhecido por ser a arma que define quem vive e morre",80);  
+        ItemdeDEF  sarcofagop= new ItemdeDEF("Sarcófago Protetor"," Que a bênção dos antigos Faraós o acompanhe",60);  
+          
+        ItemdeATK  dentedes= new ItemdeATK("Dente de Sabre","O famoso Dente de Sabre do Tigre mais perigoso do mundo",75);  
+        ItemdeDEF  tunicab= new ItemdeDEF("Túnica Branca","Aquece Qualquer aventureiro",75);  
+          
+        ItemdeATK  maodeg= new ItemdeATK("Mão de Gorila"," Um cruzado de direita dessa mão nocauteia qualquer um",75);  
+        ItemdeDEF  escudodec= new ItemdeDEF("Escudo de Cipó"," Achado na toca de Gorilas",85);  
+          
+        ItemdeATK  bastaorex= new ItemdeATK("Bastão Conjurador de Rex","Usada por tribos de magos na antiguidade para conjurar o Rei",85);  
+        ItemdeDEF  esqueletoj= new ItemdeDEF("Esqueleto Jurássico","Ossos muito rígidos ",85);  
+          
+        ItemdeATK  harpal= new ItemdeATK("Harpa do Leão","Libera um poderoso rugido que atordoa adversários",80);  
+        ItemdeDEF  jubac= new ItemdeDEF("Juba Congelada","Além de exibir poder é muito eficaz para se defender",100);  
+          
+        ItemdeATK  estacagel= new ItemdeATK("Estaca de Gelo"," Parte do corpo do Golem de Gelo",95);  
+        ItemdeDEF  escudogel= new ItemdeDEF("Escudo de gelo", "Parte do corpo do Golem de Gelo",95);  
+          
+        ItemdeATK  furacaogel= new ItemdeATK("Furacão de Gelo","Ninguém nunca pensou que desse para domar um furacão",105);  
+        ItemdeDEF  nevep= new ItemdeDEF("Neve Protetora","É muito difícil atravessar essa barreira ",95);  
+          
+        ItemdeATK  triquei= new ItemdeATK("Tridente Queimado"," Antigamente era posse de Poseidon",110);  
+        ItemdeDEF  escudocinz= new ItemdeDEF("Escudo de Cinzas","O que restou de um monstro perturbado",100);  
+          
+        ItemdeATK  arcofogo= new ItemdeATK("Arco de Fogo"," Das asas da Fênix surgiu um Arco extremamente preciso",100);  
+        ItemdeDEF  armadurachamav= new ItemdeDEF("Armadura da Chama Viva"," Dizem que essa armadura faz com que a Fênix renasça das cinzas",120);  
+          
+        ItemdeATK  espadaflam= new ItemdeATK("Espada Flamejante","Após a morde de um Dragão sua alma pode ser introduzida em um objeto, esta espada possuí a alma do dragão mais poderoso",130);  
+        ItemdeDEF  couradrag= new ItemdeDEF("Couraça de Dragão","Nem mesmo a mais poderosa espada pode atravessá-la",100);  
+          
+        ItemdeATK  lancacav= new ItemdeATK("Lança de Cavaleiro"," Antiga lança de um nobre cavaleiro",115);  
+        ItemdeDEF  cabecaflam= new ItemdeDEF("Cabeça Flamejante"," A lenda do Cavaleiro sem Cabeça continua",125);  
+          
+        ItemdeATK  cabechidra= new ItemdeATK("Cabeça de Hidra ","Uma arma para perder a cabeça",120);  
+        ItemdeDEF  escamahidra= new ItemdeDEF("Escamas de Hidra","ão fortes que até mesmo Hércules não conseguiu perfurar",130);  
+          
+        ItemdeATK  caudasq= new ItemdeATK("Cauda de Serpente de Quimera"," Uma arma inteligente que pode atacar em áreas que aventureiros não conhecem do oponente",115);  
+        ItemdeDEF  cerebroquim= new ItemdeDEF("Cérebro de Quimera","Porque um escudo potente quando se pode prever todos os movimentos em uma batalha",145);  
+          
+        ItemdeATK  chuvap= new ItemdeATK("Chuva de Pedras","Potente contra um exército de inimigos",125);  
+        ItemdeDEF  cancaop= new ItemdeDEF("Canção da Proteção","Além de linda, pode proteger um aventureiro",145);  
+          
+        ItemdeATK  ferraduraaco= new ItemdeATK("Ferradura do Mar"," Pode ser que sua sorte melhore com uma arma dessas",130);  
+        ItemdeDEF  chifrecav= new ItemdeDEF("Chifre de Cavalo Marinho","Muito mais duro que um diamante",150);  
+          
+        ItemdeATK  tentaculoc= new ItemdeATK("Tentáculo do Cthulhu","Cthulhu não precisa de mais nada além de seus tentáculos e sua presença",150);  
+        ItemdeDEF  tentaculocd= new ItemdeDEF("Tentáculo do Cthulhu ","Cthulhu não precisa de mais nada além de seus tentáculos e sua presença ",150);  
+          
+        ItemdeATK  espnegra= new ItemdeATK("Espada Negra","Apenas olhar para essa espada te destruir por completo",145);  
+        ItemdeDEF  assasanjo= new ItemdeDEF("Assas de Anjo Caído"," Carregam penas negras como a própria escuridão",135);  
+          
+        ItemdeATK  cajdonecromante= new ItemdeATK("Cajado no Necromante","Poder suficiente para destruir mundos",145);  
+        ItemdeDEF  capanecromante= new ItemdeDEF("Capa do Necromante","Presente especial do Rei Demônio",135);  
+          
+        ItemdeATK  presennsup= new ItemdeATK(" Presença Suprema"," Ninguém pode sobreviver a presença do senhor das trevas",200);  
+        ItemdeDEF  presensupr= new ItemdeDEF(" Presença Suprema"," Ninguém pode sobreviver a presença do senhor das trevas",200); 
+        
         //Criando Classes
         PadraodasClasses guerreiro = new PadraodasClasses("Guerreiro","Força e Defesa altos, porém não sabe manusear armas complicadas.",25,25);
         PadraodasClasses arqueiro = new PadraodasClasses("Arqueiro","Força e Defesa não muito expressivos, porém alta habilidade com arcos.",15,10);
