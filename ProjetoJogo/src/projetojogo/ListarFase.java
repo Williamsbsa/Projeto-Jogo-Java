@@ -47,7 +47,7 @@ public class ListarFase {
             System.out.println("Descricao: "+ CadastrarFase.fases.get(i).descricao);
             System.out.println("Level: "+ CadastrarFase.fases.get(i).level);
             listarMonstrosNormaisDaFase();
-            listarChefaoDaFase();
+            //listarChefaoDaFase();
         }
     }
     
@@ -87,4 +87,31 @@ public class ListarFase {
         CadastrarFase.chefao.add(chefao);
     }
     
+    public static void listarMonstrosEscolhido(int indice){
+        System.out.println("\nNome do Monstro Escolhido: "+ CadastrarFase.monstroNormal.get(indice).nome);
+        int forca = (CadastrarFase.monstroNormal.get(indice).forca);
+        int saude = (CadastrarFase.monstroNormal.get(indice).saude);
+        int forcaItem = (CadastrarFase.monstroNormal.get(indice).itemAtk.get(0).getDanoDeAtk());
+        int defesaItem = (CadastrarFase.monstroNormal.get(indice).itemDef.get(0).getEscudo());
+        int danoTotal = forca+forcaItem;
+        int escudoTotal = saude+defesaItem;
+        System.out.println("Dano total do monstro = "+danoTotal);
+        System.out.println("Escudo total do monstro = "+escudoTotal);
+        }
+    
+    public static int forcaTotalMonstro(int indice){
+        int forca = (CadastrarFase.monstroNormal.get(indice).forca);
+        int forcaItem = (CadastrarFase.monstroNormal.get(indice).itemAtk.get(0).getDanoDeAtk());
+        int danoTotal = forca+forcaItem;
+        return danoTotal;
+        }
+    
+    public static int escudoTotalMonstro(int indice){
+        int saude = (CadastrarFase.monstroNormal.get(indice).saude);
+        int defesaItem = (CadastrarFase.monstroNormal.get(indice).itemDef.get(0).getEscudo());
+        int escudoTotal = saude+defesaItem;
+        return escudoTotal;
+        }
+    
 }
+    
