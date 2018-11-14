@@ -116,7 +116,7 @@ public class ProjetoJogo {
         ItemdeDEF  tentaculocd= new ItemdeDEF("Tentáculo do Cthulhu ","Cthulhu não precisa de mais nada além de seus tentáculos e sua presença ",); 
          
         ItemdeATK  espnegra= new ItemdeATK("Espada Negra","Apenas olhar para essa espada te destruir por completo",); 
-        ItemdeDEF  assasanjo= new ItemdeDEF("Assas de Anjo Caído"," Carregam penas negras como a própria escuridão",); 
+        ItemdeDEF  assasanjo= new ItemdeDEF("Assas de Anjo Caído"," Cadsdsdrregam penas negras como a própria escuridão",); 
          
         ItemdeATK  cajdonecromante= new ItemdeATK("Cajado no Necromante","Poder suficiente para destruir mundos",); 
         ItemdeDEF  capanecromante= new ItemdeDEF("Capa do Necromante","Presente especial do Rei Demônio",); 
