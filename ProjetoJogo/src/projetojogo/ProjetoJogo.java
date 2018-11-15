@@ -128,7 +128,7 @@ public class ProjetoJogo {
         PadraodasClasses mago = new PadraodasClasses("Mago","Força e Defesa um pouco baixos, porém faz conjurações rápidas com suas magias e domina suas armas.",10,15);
         
         //Criando Monstros e seus itens
-        MonstroNormal goblin = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 25,75);
+        MonstroNormal goblin = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 25,75);//voltar pra 25 de dano
         goblin.addItemATK(espadaGob);
         goblin.addItemDEF(armaduraPano);
         MonstroNormal slime = new MonstroNormal("Slime bebê","Recém nascido que incomoda muito", 25,75);
@@ -320,7 +320,6 @@ public class ProjetoJogo {
         System.out.println("Escolha uma das classes abaixo: ");
         ListarClasse.listarClasse();
         
-        int b = 0;
         PadraoDoJogador jogador = null;
         int danoClasse;
         int escudoClasse;
@@ -338,32 +337,28 @@ public class ProjetoJogo {
             System.out.println("Ora, parece que temos um experiente aqui, pelo menos na idade.. agora resta saber se provará suas habilidades ou não, hmm...");
         }
         
-        while (b==0){
+        while (true){
             System.out.print("\nDigite o nome da Classe que escolheu: ");
             escolhaCla = on.nextLine();
             if (escolhaCla.equalsIgnoreCase("guerreiro")){
                 jogador = new PadraoDoJogador(nome,idade,10,1,0); //nome,idade,saude,level,moeda;
                 jogador.addClasse(guerreiro);
                 break;
-                //b = 1;
             }
             else if (escolhaCla.equalsIgnoreCase("arqueiro")){
                 jogador = new PadraoDoJogador(nome,idade,0,1,0);
                 jogador.addClasse(arqueiro);
                 break;
-                //b = 1;
             }
             else if (escolhaCla.equalsIgnoreCase("ladino")){
                 jogador = new PadraoDoJogador(nome,idade,0,1,0);
                 jogador.addClasse(ladino);
                 break;
-                //b = 1;
             }
             else if (escolhaCla.equalsIgnoreCase("mago")){
                 jogador = new PadraoDoJogador(nome,idade,0,1,0);
                 jogador.addClasse(mago);
                 break;
-                //b = 1;
             }
         }
         System.out.println("\nClasse escolhida: "+escolhaCla);
@@ -379,7 +374,8 @@ public class ProjetoJogo {
         System.out.println("Escudo total = "+escudoTotal);
         
         System.out.println("\nAgora você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
-        ListarFase.listarFase(); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
+        System.out.println("Lembre-se que independente do Monstro que você matar, ele irá dropar seus itens, você só poderá escolher pegar de Atk ou Def, e  se pegar, ele substituirá seu atual.");
+        ListarFase.listarFase(0); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
         System.out.print("\nDigite qual monstro deseja atacar (sem acentos): ");
         String escolhaMonstro;
         escolhaMonstro = on.nextLine();
@@ -396,26 +392,25 @@ public class ProjetoJogo {
                     System.out.print("O primeiro turno é seu, digite 1 quando quiser atacar: ");
                     atacar = on.nextInt();
                     if(atacar == 1){
-                        while(escudoMonstro > 0){
-                            escudoMonstro = escudoMonstro - danoTotal;
-                            if (escudoMonstro>0){
-                                System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
-                                System.out.println("Escudo total do monstro = "+ escudoMonstro);
-                            }
-                            else if (escudoMonstro<= 0){
-                                System.out.println("Escudo do monstro chegou a 0, OU SEJA.. ELIMADO COM SUCESSO !!");
-                                break;
-                            }
-                            System.out.println("\nAgora é a vez do Monstro, Prepare-se !!");
+                        //
+                        escudoMonstro = escudoMonstro - danoTotal;
+                        if (escudoMonstro>0){
                             System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
-                            escudoTotal = escudoTotal - forcaMonstro;
-                            if (escudoTotal>0){
-                                System.out.println("Seu escudo total está em: "+ escudoTotal);
-                           }else if(escudoTotal<=0){
-                                System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
-                                // ou return;
-                                exit();
-                    }
+                            System.out.println("Escudo total do monstro agora está em:  "+ escudoMonstro);
+                        }
+                        else if (escudoMonstro<= 0){
+                            System.out.println("Escudo do monstro chegou a 0, OU SEJA.. ELIMADO COM SUCESSO !!");
+                            break;
+                            }
+                        System.out.println("\nAgora é a vez do Monstro, Prepare-se !!");
+                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+                        escudoTotal = escudoTotal - forcaMonstro;
+                        if (escudoTotal>0){
+                            System.out.println("Seu escudo total agora está em: "+ escudoTotal);
+                        }else if(escudoTotal<=0){
+                            System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
+                            return;
+                            //exit();
                 }
                     }
                 }

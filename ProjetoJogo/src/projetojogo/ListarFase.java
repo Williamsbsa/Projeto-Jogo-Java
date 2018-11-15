@@ -10,45 +10,40 @@ package projetojogo;
  * @author braga
  */
 public class ListarFase {
-    public static void listarMonstrosNormaisDaFase(){
-        for(int i= 0;i<CadastrarFase.monstroNormal.size();i++){
-            System.out.println("\nNome do Monstro: "+ CadastrarFase.monstroNormal.get(i).nome);
-            System.out.println("Descricao: "+ CadastrarFase.monstroNormal.get(i).descricao);
-            System.out.println("Forca: "+ CadastrarFase.monstroNormal.get(i).forca);
-            System.out.println("Saude: "+ CadastrarFase.monstroNormal.get(i).saude);
-            System.out.println("Nome item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getNome());
-            System.out.println("Descricao item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getDescricao());
-            System.out.println("Dano item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getDanoDeAtk());
-            System.out.println("Nome item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getNome());
-            System.out.println("Descricao item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getDescricao());
-            System.out.println("Escudo item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getEscudo());
-        }
+    public static void listarMonstrosNormaisDaFase(int i){
+        System.out.println("\nNome do Monstro: "+ CadastrarFase.monstroNormal.get(i).nome);
+        System.out.println("Descricao: "+ CadastrarFase.monstroNormal.get(i).descricao);
+        System.out.println("Forca: "+ CadastrarFase.monstroNormal.get(i).forca);
+        System.out.println("Saude: "+ CadastrarFase.monstroNormal.get(i).saude);
+        System.out.println("Nome item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getNome());
+        System.out.println("Descricao item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getDescricao());
+        System.out.println("Dano item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getDanoDeAtk());
+        System.out.println("Nome item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getNome());
+        System.out.println("Descricao item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getDescricao());
+        System.out.println("Escudo item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getEscudo());
     }
     
-    public static void listarChefaoDaFase(){
-        for(int i= 0;i<CadastrarFase.chefao.size();i++){
-            System.out.println("\nNome do Chefao: "+ CadastrarFase.chefao.get(i).nome);
-            System.out.println("Descricao: "+ CadastrarFase.chefao.get(i).descricao);
-            System.out.println("Forca: "+ CadastrarFase.chefao.get(i).forca);
-            System.out.println("Saude: "+ CadastrarFase.chefao.get(i).saude);
-            System.out.println("Motivacao(Lore): "+ CadastrarFase.chefao.get(i).motivacao);
-            System.out.println("Nome item de Atk: "+ CadastrarFase.chefao.get(i).itemAtk.get(0).getNome());
-            System.out.println("Descricao item de Atk: "+ CadastrarFase.chefao.get(i).itemAtk.get(0).getDescricao());
-            System.out.println("Dano item de Atk: "+ CadastrarFase.chefao.get(i).itemAtk.get(0).getDanoDeAtk());
-            System.out.println("Nome item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getNome());
-            System.out.println("Descricao item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getDescricao());
-            System.out.println("Escudo item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getEscudo());        
-        }
+    public static void listarChefaoDaFase(int i){
+        System.out.println("\nNome do Chefao: "+ CadastrarFase.chefao.get(i).nome);
+        System.out.println("Descricao: "+ CadastrarFase.chefao.get(i).descricao);
+        System.out.println("Forca: "+ CadastrarFase.chefao.get(i).forca);
+        System.out.println("Saude: "+ CadastrarFase.chefao.get(i).saude);
+        System.out.println("Motivacao(Lore): "+ CadastrarFase.chefao.get(i).motivacao);
+        System.out.println("Nome item de Atk: "+ CadastrarFase.chefao.get(i).itemAtk.get(0).getNome());
+        System.out.println("Descricao item de Atk: "+ CadastrarFase.chefao.get(i).itemAtk.get(0).getDescricao());
+        System.out.println("Dano item de Atk: "+ CadastrarFase.chefao.get(i).itemAtk.get(0).getDanoDeAtk());
+        System.out.println("Nome item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getNome());
+        System.out.println("Descricao item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getDescricao());
+        System.out.println("Escudo item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getEscudo());        
     
     }    
-    public static void listarFase(){
-        for(int i= 0;i<CadastrarFase.fases.size();i++){
-            System.out.println("\nNome da Fase: "+ CadastrarFase.fases.get(i).nome);
-            System.out.println("Descricao: "+ CadastrarFase.fases.get(i).descricao);
-            System.out.println("Level: "+ CadastrarFase.fases.get(i).level);
-            listarMonstrosNormaisDaFase();
-            //listarChefaoDaFase();
-        }
+    public static void listarFase(int i){
+        System.out.println("\nNome da Fase: "+ CadastrarFase.fases.get(i).nome);
+        System.out.println("Descricao: "+ CadastrarFase.fases.get(i).descricao);
+        System.out.println("Level: "+ CadastrarFase.fases.get(i).level);
+        listarMonstrosNormaisDaFase(i);
+        listarMonstrosNormaisDaFase(i+1);
+        //listarChefaoDaFase(i);
     }
     
     public static void apagarMonstroNormal(int indice){
