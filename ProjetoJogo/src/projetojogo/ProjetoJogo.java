@@ -98,7 +98,96 @@ public class ProjetoJogo {
                             }
                         }else{
                             System.out.println("O Monstro errou o golpe, mas que sorte a sua heim !!");
-                            System.out.println("Seu Escudo continua: "+escudoTotal);
+                            System.out.println("Seu Escudo continua em: "+escudoTotal);
+                            System.out.println("=====================================================");
+                        }
+                    }
+                }
+        }
+        static void batalhaBoss(PadraoDoJogador jogador, int indice, ItemdeATK itemdeAtkBoss, ItemdeDEF itemdeDefBoss){
+            int danoClasse = jogador.getClasses().get(0).getForca();
+            int escudoClasse = jogador.getClasses().get(0).getDefesa();
+            int danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+            int escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+            int saude = jogador.getSaude();
+            int danoTotal = danoClasse + danoItem;
+            int escudoTotal = escudoClasse + escudoItem + saude;
+            Scanner on = new Scanner(System.in);
+            int indiceBoss = indice;
+            ListarFase.listarBossEnfrentando(indice);
+            int forcaBoss = ListarFase.forcaTotalBoss(indiceBoss);
+            int escudoBoss = ListarFase.escudoTotalBoss(indiceBoss);
+            int atacar = 0;
+                while(true){
+                    System.out.print("\nO Turno é seu, digite 1 quando quiser atacar: ");
+                    atacar = on.nextInt();
+                    if(atacar == 1){
+                        //
+                        escudoBoss = escudoBoss - danoTotal;
+                        if (escudoBoss>0){
+                            System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                            System.out.println("Escudo total do Boss agora está em:  "+ escudoBoss);
+                            System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+                        }
+                        else if (escudoBoss<= 0){
+                            System.out.println("#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#");
+                            System.out.println("Escudo do Boss chegou a 0, OU SEJA.. EXTERMINADO COM SUCESSO !!!!");
+                            System.out.println("=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=");
+                            System.out.println("\nO Boss dropou seus itens... ");
+                            ListarFase.listarItensDropadosBoss(indice);
+                            System.out.print("\nDeseja pegar um dos itens? ([1] - SIM) ou ([2] - NÃO) : ");
+                            int pegarItens = on.nextInt();
+                            if (pegarItens == 1){
+                                System.out.print(">>>>>>>>>>([1] - para Item de Atk) ou ([2] - para Item de Def)<<<<<<<<<< :");
+                                int escolherItem = on.nextInt();
+                                if (escolherItem == 1){//logica do item de atk
+                                    PadraodasClasses classeEscolhida = jogador.classes.get(0);
+                                    ListarClasse.editarItemAtk(classeEscolhida, itemdeAtkBoss);//mudamos item aqui
+                                    danoClasse = jogador.getClasses().get(0).getForca();//aqui pra baixo é so pro print do seu danoTotal sair certo, já que mudou os valores.
+                                    danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+                                    danoTotal = danoClasse + danoItem;
+                                    System.out.println("Seu novo Status(sem recuperar seu escudo) agora é... ");
+                                    System.out.println("**********************************************************************************");
+                                    System.out.println("Dano Total = "+danoTotal);
+                                    System.out.println("Escudo total = "+escudoTotal);
+                                    System.out.println("**********************************************************************************");
+                                    break;
+                                }else{//logica do item de def
+                                    PadraodasClasses classeEscolhida = jogador.classes.get(0);
+                                    ListarClasse.editarItemDef(classeEscolhida, itemdeDefBoss);//mudamos item aqui
+                                    escudoClasse = jogador.getClasses().get(0).getDefesa();
+                                    escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+                                    saude = jogador.getSaude();
+                                    escudoTotal = escudoClasse + escudoItem + saude;
+                                    System.out.println("Seu novo Status(sem recuperar seu escudo) agora é... ");
+                                    System.out.println("**********************************************************************************");
+                                    System.out.println("Dano Total = "+danoTotal);
+                                    System.out.println("Escudo total = "+escudoTotal);
+                                    System.out.println("**********************************************************************************");
+                                    break;
+                                }
+                            }else{//se nao quiser pegar itens
+                                break;
+                            }
+                            }
+                        System.out.println("\nAgora é a vez do Boss, Prepare-se !!");
+                        System.out.println("=====================================================");
+                        Random sorteio = new Random();
+                        int aleatorio = (sorteio.nextInt(2));
+                        if(aleatorio == 1){ //se o numero aleatorio for 1 entao o monstro te acerta
+                            escudoTotal = escudoTotal - forcaBoss;
+                            if (escudoTotal>0){
+                                System.out.println("Seu escudo total agora está em: "+ escudoTotal);
+                                System.out.println("=====================================================");
+                            }else if(escudoTotal<=0){
+                                System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
+                                System.out.println("=====================================================");
+                                return;
+                                //exit() nao funcionou;
+                            }
+                        }else{
+                            System.out.println("O Boss errou o golpe, mas que sorte a sua heim !!");
+                            System.out.println("Seu Escudo continua em: "+escudoTotal);
                             System.out.println("=====================================================");
                         }
                     }
@@ -467,23 +556,46 @@ public class ProjetoJogo {
         
         System.out.println("\nAgora você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
         System.out.println("Lembre-se que independente do Monstro que você matar, ele irá dropar seus itens, você só poderá escolher pegar de Atk ou Def, e se pegar, ele substituirá seu atual.");
+        //>>>>>>>>>>>>>>>>>>COMEÇA AQUI ONDE VOCÊ IRÁ COPIAR A LÓGICA PARA COLAR MAIS EMBAIXO NAS OUTRAS FASES.
         ListarFase.listarFase(0); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
-        System.out.print("\nDigite qual monstro deseja atacar (sem acentos): ");
-        String escolhaMonstro;
-        escolhaMonstro = on.nextLine();
-        /*int forcaMonstro;
-        int escudoMonstro;
-        int indiceMonstro;*/
-
-        if (escolhaMonstro.equalsIgnoreCase("goblin")){
-            batalha(jogador,0,espadaGob,armaduraPano); //toda lógica da batalha esta simplesmente nisso kkk
-            }
-
-        else if (escolhaMonstro.equalsIgnoreCase("slime bebe")){
-            batalha(jogador,1,ossoRat,escudoGosm);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("goblin")){
+                batalha(jogador,0,espadaGob,armaduraPano); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("slime bebe")){
+                batalha(jogador,1,ossoRat,escudoGosm);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
         }
+
         System.out.println("\nParece que você conseguiu passar do primeiro inimigo, eu acabei de perder minha aposta, mas quero ver se consegue derrubar o grandão agora...");
         ListarFase.listarChefaoDaFase(0);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,0,porreteOgro,tangaOgro);
+        //FECHA AQUI A LÓGICA ONDE VC PRECISA COPIAR PRA FASER AS PROXIMAS FASES<<<<<<<<<<<<<<<<<<<<<<<<
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
         ItemdeDEF d1 = new ItemdeDEF("Escudo","Escudo enviado de Narnia", 77);
