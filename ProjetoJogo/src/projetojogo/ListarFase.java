@@ -23,6 +23,15 @@ public class ListarFase {
         System.out.println("Escudo item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getEscudo());
     }
     
+    public static void listarItensDropadosMonstroNormal(int i){
+        System.out.println("Nome item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getNome());
+        System.out.println("Descricao item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getDescricao());
+        System.out.println("Dano item de Atk: "+ CadastrarFase.monstroNormal.get(i).itemAtk.get(0).getDanoDeAtk());
+        System.out.println("Nome item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getNome());
+        System.out.println("Descricao item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getDescricao());
+        System.out.println("Escudo item de Def: "+ CadastrarFase.monstroNormal.get(i).itemDef.get(0).getEscudo());
+    }
+    
     public static void listarChefaoDaFase(int i){
         System.out.println("\nNome do Chefao: "+ CadastrarFase.chefao.get(i).nome);
         System.out.println("Descricao: "+ CadastrarFase.chefao.get(i).descricao);
