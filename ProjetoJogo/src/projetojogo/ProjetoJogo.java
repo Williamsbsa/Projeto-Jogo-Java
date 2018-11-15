@@ -6,6 +6,7 @@
 package projetojogo;
 
 import java.util.Scanner;
+import java.util.Random;
 import static javafx.application.Platform.exit;
 
 /**
@@ -374,7 +375,7 @@ public class ProjetoJogo {
         System.out.println("Escudo total = "+escudoTotal);
         
         System.out.println("\nAgora você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
-        System.out.println("Lembre-se que independente do Monstro que você matar, ele irá dropar seus itens, você só poderá escolher pegar de Atk ou Def, e  se pegar, ele substituirá seu atual.");
+        System.out.println("Lembre-se que independente do Monstro que você matar, ele irá dropar seus itens, você só poderá escolher pegar de Atk ou Def, e se pegar, ele substituirá seu atual.");
         ListarFase.listarFase(0); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
         System.out.print("\nDigite qual monstro deseja atacar (sem acentos): ");
         String escolhaMonstro;
@@ -400,18 +401,26 @@ public class ProjetoJogo {
                         }
                         else if (escudoMonstro<= 0){
                             System.out.println("Escudo do monstro chegou a 0, OU SEJA.. ELIMADO COM SUCESSO !!");
+                            System.out.println("O Monstro dropou seus itens, que são: ");
                             break;
                             }
                         System.out.println("\nAgora é a vez do Monstro, Prepare-se !!");
                         System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
-                        escudoTotal = escudoTotal - forcaMonstro;
-                        if (escudoTotal>0){
-                            System.out.println("Seu escudo total agora está em: "+ escudoTotal);
-                        }else if(escudoTotal<=0){
-                            System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
-                            return;
-                            //exit();
-                }
+                        Random sorteio = new Random();
+                        int aleatorio = (sorteio.nextInt(2));
+                        if(aleatorio == 1){ //se o numero aleatorio for 1 entao o monstro te acerta
+                            escudoTotal = escudoTotal - forcaMonstro;
+                            if (escudoTotal>0){
+                                System.out.println("Seu escudo total agora está em: "+ escudoTotal);
+                            }else if(escudoTotal<=0){
+                                System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
+                                return;
+                                //exit();
+                            }
+                        }else{
+                            System.out.println("O Monstro errou o golpe, mas que sorte a sua heim !!");
+                            System.out.println("Seu Escudo continua: "+escudoTotal);
+                        }
                     }
                 }
             }
