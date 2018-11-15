@@ -6,6 +6,7 @@
 package projetojogo;
 
 import java.util.Scanner;
+import static javafx.application.Platform.exit;
 
 /**
  *
@@ -59,7 +60,6 @@ public class ProjetoJogo {
           
         ItemdeATK  ferraoven= new ItemdeATK("Ferrão Venenoso","Contém veneno e mata lentamente",65);  
         ItemdeDEF  carapver= new ItemdeDEF("Carapaça Vermelha"," Suporta até o calor mais forte do Deserto",55);  
-          
           
         ItemdeATK  dentesg= new ItemdeATK("Dentes Giratórios do Verme do Deserto"," Mesmo morto estes dentes continuam a girar pela eternidade, se o portador desejar",70);  
         ItemdeDEF  areiap= new ItemdeDEF("Areia Processada","Gerada dentro do estômago do Verme",60);  
@@ -134,97 +134,98 @@ public class ProjetoJogo {
         MonstroNormal slime = new MonstroNormal("Slime bebê","Recém nascido que incomoda muito", 25,75);
         slime.addItemATK(ossoRat);
         slime.addItemDEF(escudoGosm);
-        Chefao ogro = new Chefao("Ogro Verde","O líder da caverna, que está furioso com a derrota de seu companheiro",25,50,"Este Ogro Verde sempre foi habilidoso desde criança, e nunca cansou de se gabar disso, agora que você está ameaçando seu trono ele não vai deixar barato!!");
+        Chefao ogro = new Chefao("Ogro Verde","O líder da caverna, que está furioso com a derrota de seu companheiro",25,100,"Este Ogro Verde sempre foi habilidoso desde criança, e nunca cansou de se gabar disso, agora que você está ameaçando seu trono ele não vai deixar barato!!");
         ogro.addItemATK(porreteOgro);
         ogro.addItemDEF(tangaOgro);
         
-        MonstroNormal morcss = new MonstroNormal(" Morcego Sanguessuga"," O sugador de sangue voador", ,);
+        MonstroNormal morcss = new MonstroNormal("Morcego Sanguessuga"," O sugador de sangue voador", 30,80);
         morcss.addItemATK(presasmorc);
         morcss.addItemDEF(pelodemorce);
-        MonstroNormal  arann= new MonstroNormal("Aranha Negra","Também conhecida como Viúva Negra", ,);
+        MonstroNormal  arann= new MonstroNormal("Aranha Negra","Também conhecida como Viúva Negra", 40,70);
         arann.addItemATK(queliceras);
         arann.addItemDEF(exoaranha);
-        Chefao  hiena= new Chefao("Hiena Mestiça","Um monstro nascido na Floresta do Pesadelo",,,"Com um começo de vida complicado esse a pequenina Hiena teve que aprender a se defender sozinha, atualmente vaga pela Floresta do Pesadelo em busca de aventureiros que possuam itens raros");
+        Chefao  hiena= new Chefao("Hiena Mestiça","Um monstro nascido na Floresta do Pesadelo",45,100,"Com um começo de vida complicado esse a pequenina Hiena teve que aprender a se defender sozinha, atualmente vaga pela Floresta do Pesadelo em busca de aventureiros que possuam itens raros");
         hiena.addItemATK(machadohiena);
         hiena.addItemDEF(armadurahiena);
         
-        MonstroNormal  espec= new MonstroNormal("Espectro","Algum dia foi alguém", ,);
+        MonstroNormal  espec= new MonstroNormal("Espectro","Algum dia foi alguém",5,5);
         espec.addItemATK(almafa);
         espec.addItemDEF(poeiraf);
-        MonstroNormal  garg= new MonstroNormal(" Gárgula","Coração de pedra", ,);
+        MonstroNormal  garg= new MonstroNormal("Gárgula","Coração de pedra",30,90);
         garg.addItemATK(lascadep);
         garg.addItemDEF(armaduradep);
-        Chefao  magoc= new Chefao(") Mago Confuso","Poderoso Mago que cuida da Torre",,,"Após ser feita uma lavagem cerebral pelo Necromancer enlouqueceu e derrota tudo que entra em sua propriedade");
+        Chefao magoc= new Chefao("Mago Confuso","Poderoso Mago que cuida da Torre",110,55,"Após ser feita uma lavagem cerebral pelo Necromancer enlouqueceu e derrota tudo que entra em sua propriedade");
         magoc.addItemATK(cajmag);
         magoc.addItemDEF(vestesmag);
         
-        MonstroNormal escpv = new MonstroNormal("Escorpião Vermelho"," É muito conhecido por nômades que tentam cruzar o Deserto", ,);
+        MonstroNormal escpv = new MonstroNormal("Escorpião Vermelho"," É muito conhecido por nômades que tentam cruzar o Deserto", 65,65);
         escpv.addItemATK(ferraoven);
         escpv.addItemDEF(carapver);
-        MonstroNormal verme = new MonstroNormal("Verme de Areia do Deserto","Causa muitas mortes pelos buracos na areia", ,);
+        MonstroNormal verme = new MonstroNormal("Verme de Areia do Deserto","Causa muitas mortes pelos buracos na areia", 80,50);
         verme.addItemATK(dentesg);
         verme.addItemDEF(areiap);
-        Chefao  anub= new Chefao("Anubis"," O guardião e guia dos mortos",,,"Anubis percebeu um número anormal de seres sendo enviados ao seu encontro e quis saber o que estava acontecendo, quando chegou até você quis o resolver problema da forma mais rápida possível");
+        Chefao anub= new Chefao("Anubis"," O guardião e guia dos mortos",100,85,"Anubis percebeu um número anormal de seres sendo enviados ao seu encontro e quis saber o que estava acontecendo, quando chegou até você quis o resolver problema da forma mais rápida possível");
         anub.addItemATK(bastaodam);
         anub.addItemDEF(sarcofagop);
         
-        MonstroNormal  tigreb= new MonstroNormal("Tigre Dente de Sabre Branco","Por seus pelos claros era \"coroado\" como o Rei dos Tigres Dente de Sabre", ,);
+        MonstroNormal  tigreb= new MonstroNormal("Tigre Dente de Sabre Branco","Por seus pelos claros era \"coroado\" como o Rei dos Tigres Dente de Sabre", 90,50);
         tigreb.addItemATK(dentedes);
         tigreb.addItemDEF(tunicab);
-        MonstroNormal  gorila= new MonstroNormal("Gorila Gigante","Um monstro muito temido por vilarejos antigos", ,);
+        //paramos aqui
+        MonstroNormal  gorila= new MonstroNormal("Gorila Gigante","Um monstro muito temido por vilarejos antigos", 70,70);
         gorila.addItemATK(maodeg);
         gorila.addItemDEF(escudodec);
-        Chefao  rex= new Chefao("Tiranossauro Rex","Também conhecido como o Rei do período Jurássico",,," O Tiranossauro Rex vê tudo que está em sua frente como uma presa, e desta vez não foi diferente ");
+        Chefao  rex= new Chefao("Tiranossauro Rex","Também conhecido como o Rei do período Jurássico",120,85," O Tiranossauro Rex vê tudo que está em sua frente como uma presa, e desta vez não foi diferente ");
         rex.addItemATK(bastaorex);
         rex.addItemDEF(esqueletoj);
         
-        MonstroNormal lc = new MonstroNormal("Leão Congelado"," Um dos guardiões da montanha", ,);
+        MonstroNormal lc = new MonstroNormal("Leão Congelado"," Um dos guardiões da montanha", 85,65);
         lc.addItemATK(harpal);
         lc.addItemDEF(jubac);
-        MonstroNormal  goleng= new MonstroNormal("Golem de Gelo","Criatura formada apenas de gelo", ,);
+        MonstroNormal  goleng= new MonstroNormal("Golem de Gelo","Criatura formada apenas de gelo", 60,90);
         goleng.addItemATK(estacagel);
         goleng.addItemDEF(escudogel);
-        Chefao  abomh= new Chefao("Abominável Homem das Neves","Em lugares não gelados é chamado de Pé Grande",,,"Tudo que este monstro não quer é ser visto, no caminho pela montanha você o observou e seguiu até que ele percebesse que estava lá");
+        Chefao  abomh= new Chefao("Abominável Homem das Neves","Em lugares não gelados é chamado de Pé Grande",110,115,"Tudo que este monstro não quer é ser visto, no caminho pela montanha você o observou e seguiu até que ele percebesse que estava lá");
         abomh.addItemATK(furacaogel);
         abomh.addItemDEF(nevep);
         
-        MonstroNormal  espc= new MonstroNormal("Espírito das Chamas","Uma chama de fogo viva ", ,);
+        MonstroNormal espc= new MonstroNormal("Espírito das Chamas","Uma chama de fogo viva ", 90,70);
         espc.addItemATK(triquei);
         espc.addItemDEF(escudocinz);
-        MonstroNormal  fenix= new MonstroNormal("Fênix"," Pássaro de fogo muito poderoso com a habilidade de renascer das cinzas após um período de tempo, é bom derrota-lo e correr", ,);
+        MonstroNormal  fenix= new MonstroNormal("Fênix"," Pássaro de fogo muito poderoso com a habilidade de renascer das cinzas após um período de tempo, é bom derrota-lo e correr", 85,75);
         fenix.addItemATK(arcofogo);
         fenix.addItemDEF(armadurachamav);
-        Chefao  dragao= new Chefao("Dragão de Fogo","Dragão com a pele tão forte quanto metal e bafo tão quente quanto um vulcão",,,"Todos os dragões gostam de riquezas, após descobrir uma montanha que possuía um grande tesouro resolveu toma-lo para si e até hoje, séculos depois o protege com sua vida ");
+        Chefao dragao= new Chefao("Dragão de Fogo","Dragão com a pele tão forte quanto metal e bafo tão quente quanto um vulcão",125,120,"Todos os dragões gostam de riquezas, após descobrir uma montanha que possuía um grande tesouro resolveu toma-lo para si e até hoje, séculos depois o protege com sua vida ");
         dragao.addItemATK(espadaflam);
         dragao.addItemDEF(couradrag);
         
-        MonstroNormal cavcab = new MonstroNormal("Cavaleiro sem Cabeça","Um nobre cavaleiro que perdeu a cabeça com o que estava acontecendo na época  ", ,);
+        MonstroNormal cavcab = new MonstroNormal("Cavaleiro sem Cabeça","Um nobre cavaleiro que perdeu a cabeça com o que estava acontecendo na época  ", 85,85);
         cavcab.addItemATK(lancacav);
         cavcab.addItemDEF(cabecaflam);
-        MonstroNormal  hidra= new MonstroNormal("Hidra","Monstro de várias cabeças, quando uma é cortada nascem duas em seu lugar", ,);
+        MonstroNormal  hidra= new MonstroNormal("Hidra","Monstro de várias cabeças, quando uma é cortada nascem duas em seu lugar", 100,70);
         hidra.addItemATK(cabechidra);
         hidra.addItemDEF(escamahidra);
-        Chefao  quimera= new Chefao("Quimera","Não somente um monstro, sua inteligência cativa e apavora muitos",,,"Sempre teve como objetivo sair do abismo para poder estudar alguma forma transformar seu corpo à sua vontade, busca aventureiros com itens poderosos que possam tirá-lo de lá");
+        Chefao quimera= new Chefao("Quimera","Não somente um monstro, sua inteligência cativa e apavora muitos",115,150,"Sempre teve como objetivo sair do abismo para poder estudar alguma forma transformar seu corpo à sua vontade, busca aventureiros com itens poderosos que possam tirá-lo de lá");
         quimera.addItemATK(caudasq);
         quimera.addItemDEF(cerebroquim);
         
-        MonstroNormal maxxor = new MonstroNormal("Maxxor","Um monstro verde que pode habitar tanto em ambiente aquático quanto terrestre, suas habilidades consistem em usar sua alma para invocar feitiços", ,);
+        MonstroNormal maxxor = new MonstroNormal("Maxxor","Um monstro verde que pode habitar tanto em ambiente aquático quanto terrestre, suas habilidades consistem em usar sua alma para invocar feitiços", 145,130);
         maxxor.addItemATK(chuvap);
         maxxor.addItemDEF(cancaop);
-        MonstroNormal cavm = new MonstroNormal("Cavalo Marinho Perverso","Nunca tente cavalgar em um desses ", ,);
+        MonstroNormal cavm = new MonstroNormal("Cavalo Marinho Perverso","Nunca tente cavalgar em um desses ", 120,155);
         cavm.addItemATK(ferraduraaco);
         cavm.addItemDEF(chifrecav);
-        Chefao  cthulhu= new Chefao("Cthulhu","Criatura milenar, boatos que ele foi criada junto com o planeta, ou quem sabe ele criou o próprio planeta",,,"Cthulhu achou esse RPG um jogo de criança e cansou de ficar nas sombras, agora pretende te matar com apenas 1 ataque e continuar com seus planos");
+        Chefao  cthulhu= new Chefao("Cthulhu","Criatura milenar, boatos que ele foi criada junto com o planeta, ou quem sabe ele criou o próprio planeta",150,150,"Cthulhu achou esse RPG um jogo de criança e cansou de ficar nas sombras, agora pretende te matar com apenas 1 ataque e continuar com seus planos");
         cthulhu.addItemATK(tentaculoc);
         cthulhu.addItemDEF(tentaculocd);
         
-        MonstroNormal  anjc= new MonstroNormal("Anjo Caído","Antigamente chamavam este ser de Deus", ,);
+        MonstroNormal  anjc= new MonstroNormal("Anjo Caído","Antigamente chamavam este ser de Deus", 140,145);
         anjc.addItemATK(espnegra);
         anjc.addItemDEF(assasanjo);
-        MonstroNormal necrom = new MonstroNormal("Necromancer","O braço direito do Rei dos Demônios conhecido pelos seus feitos históricos em prol das forças do mal", ,);
+        MonstroNormal necrom = new MonstroNormal("Necromancer","O braço direito do Rei dos Demônios conhecido pelos seus feitos históricos em prol das forças do mal", 155,140);
         necrom.addItemATK(cajdonecromante);
         necrom.addItemDEF(capanecromante);
-        Chefao  reidem= new Chefao(" Rei Demônio"," Durante a criação do universo todas as impurezas dos mundos foram armazenadas em um só local, dando vida ao ser mais diabólico que existe, até o Deus mais poderoso foi subjugado por ele",,," Dominar tudo e a todos é a motivação do ser supremo ");
+        Chefao  reidem= new Chefao(" Rei Demônio"," Durante a criação do universo todas as impurezas dos mundos foram armazenadas em um só local, dando vida ao ser mais diabólico que existe, até o Deus mais poderoso foi subjugado por ele",150,150," Dominar tudo e a todos é a motivação do ser supremo ");
         reidem.addItemATK(presennsup);
         reidem.addItemDEF(presensupr);
         
@@ -254,6 +255,60 @@ public class ProjetoJogo {
         CadastrarFase.addChefao(ogro);
         CadastrarFase.addFase(fase1);
         
+        PadraodasFases fase2 = new PadraodasFases("Floresta do Pesadelo","Confunde aventureiros novatos facilmente ", 2);
+        CadastrarFase.addMonstroNormal(morcss);
+        CadastrarFase.addMonstroNormal(arann);
+        CadastrarFase.addChefao(hiena);
+        CadastrarFase.addFase(fase2);
+
+        PadraodasFases fase3 = new PadraodasFases("Torre dos Ventos Uivantes","Antes conhecida como Torre da Sabedoria, caiu em desespero após uma breve visita do Necromancer", 3);
+        CadastrarFase.addMonstroNormal(espec);
+        CadastrarFase.addMonstroNormal(garg);
+        CadastrarFase.addChefao(magoc);
+        CadastrarFase.addFase(fase3);
+
+        PadraodasFases fase4 = new PadraodasFases("Deserto do Desespero","Dizem que é possível ver vários oásis nesse local, seriam miragens?", 4);
+        CadastrarFase.addMonstroNormal(escpv);
+        CadastrarFase.addMonstroNormal(verme);
+        CadastrarFase.addChefao(anub);
+        CadastrarFase.addFase(fase4);
+
+        PadraodasFases fase5 = new PadraodasFases("Ilha Esquecida","O tempo parou nessa ilha, é possível encontrar as mais primitivas formas de vida por lá", 5);
+        CadastrarFase.addMonstroNormal(tigreb);
+        CadastrarFase.addMonstroNormal(gorila);
+        CadastrarFase.addChefao(rex);
+        CadastrarFase.addFase(fase5);
+
+        PadraodasFases fase6 = new PadraodasFases("Montanha Congelada","É a divisa entre dois países, aventureiros novatos que passam por lá podem se considerar intermediários", 6);
+        CadastrarFase.addMonstroNormal(lc);
+        CadastrarFase.addMonstroNormal(goleng);
+        CadastrarFase.addChefao(abomh);
+        CadastrarFase.addFase(fase6);
+
+        PadraodasFases fase7 = new PadraodasFases("Vulcão da Discórdia","Após a posse de um Dragão muito poderoso a montanha que antes possuía uma vasta fauna e flora agora é um vulcão perigoso", 7);
+        CadastrarFase.addMonstroNormal(espc);
+        CadastrarFase.addMonstroNormal(fenix);
+        CadastrarFase.addChefao(dragao);
+        CadastrarFase.addFase(fase7);
+
+        PadraodasFases fase8 = new PadraodasFases("Profundezas do Abismo","Lugar onde lendas se tornam reais", 8);
+        CadastrarFase.addMonstroNormal(cavcab);
+        CadastrarFase.addMonstroNormal(hidra);
+        CadastrarFase.addChefao(quimera);
+        CadastrarFase.addFase(fase8);
+
+        PadraodasFases fase9 = new PadraodasFases("Cosmos Submerso","Após finalmente estar próximo do seu Destino Final, você foi teletransportado para um lugar simplesmente inexplicável, parece estar de baixo da agua, onde para qualquer lugar que você olhe só ache tentáculos, por que será?", 9);
+        CadastrarFase.addMonstroNormal(maxxor);
+        CadastrarFase.addMonstroNormal(cavm);
+        CadastrarFase.addChefao(cthulhu);
+        CadastrarFase.addFase(fase9);
+
+        PadraodasFases fase10 = new PadraodasFases("Torre do Rei Demônio","O centro de tudo que é ruim, poucos conseguiram o adentrar porém ninguém saiu", 10);
+        CadastrarFase.addMonstroNormal(anjc);
+        CadastrarFase.addMonstroNormal(necrom);
+        CadastrarFase.addChefao(reidem);
+        CadastrarFase.addFase(fase10);
+
         //Cadastrando Jogador- INICIO DO JOGO
         System.out.println(">>>>>>>>>>>>>>> BREAKING THE SPACE TIME !! <<<<<<<<<<<<<<<");
         System.out.println("Bem vindo ao RPG que reúne todas mitologias e crenças em um só jogo, por favor, complete as informações abaixo.");
@@ -358,13 +413,14 @@ public class ProjetoJogo {
                                 System.out.println("Seu escudo total está em: "+ escudoTotal);
                            }else if(escudoTotal<=0){
                                 System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
+                                // ou return;
+                                exit();
                     }
                 }
                     }
                 }
             }
 
-            //eoq
         
         
         
