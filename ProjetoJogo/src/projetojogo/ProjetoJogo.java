@@ -659,7 +659,7 @@ public class ProjetoJogo {
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
         System.out.println("******************************");
-        
+        //falta fazer com que vc n tenha sua vida restaurada ao ir enfrentar o boss
         
         
         
