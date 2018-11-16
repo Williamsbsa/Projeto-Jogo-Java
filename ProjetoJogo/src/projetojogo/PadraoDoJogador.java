@@ -80,4 +80,18 @@ public class PadraoDoJogador {
         this.classes.add(classe);
     }
     
+    public void listarJogadorPosBoss(PadraoDoJogador p1){
+        System.out.println("\n"+p1.getNome()+" agora você está no Level: "+p1.getLevel());
+        System.out.println("Suas moedas estão em: "+p1.getMoeda()+" -- você pega mais quando passa de Fase, porém não fique feliz pois não servem pra nada, até existia uma loja aqui pra comprar itens mas acabou falindo kkk.");
+        System.out.println("Sua vida base(tirando obviamente seu escudo) está em: "+p1.getSaude());
+        System.out.println("Nome do item de Atk: "+p1.getClasses().get(0).getItemAtk().get(0).getNome());
+        System.out.println("Descrição do item de Atk: "+p1.getClasses().get(0).getItemAtk().get(0).getDescricao());
+        System.out.println("Dano do item de Atk: "+p1.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk());
+        System.out.println("Nome do item de Def: "+p1.getClasses().get(0).getItemDef().get(0).getNome());
+        System.out.println("Descrição do item de Def: "+p1.getClasses().get(0).getItemDef().get(0).getDescricao());
+        System.out.println("Escudo do item de Def: "+p1.getClasses().get(0).getItemDef().get(0).getEscudo());
+        System.out.println("Nome da classe escolhida: "+p1.getClasses().get(0).getNome());
+        System.out.println("Ataque base da classe: "+p1.getClasses().get(0).getForca());
+        System.out.println("Defesa base da classe: "+p1.getClasses().get(0).getDefesa());
+    }
 }
