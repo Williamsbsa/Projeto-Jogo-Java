@@ -37,14 +37,14 @@ public class ListarClasse {
         p1.setDescricao(descricao);
     }
     
-    public static void editarItemAtk(PadraodasClasses p1, ItemdeATK itemAtk){
-        p1.itemAtk.remove(0);
-        p1.addItemAtk(itemAtk);
+    public static void editarItemAtk(PadraoDoJogador j1, ItemdeATK itemAtk){
+        j1.getClasses().get(0).getItemAtk().remove(0);
+        j1.getClasses().get(0).getItemAtk().add(itemAtk);
     }
     
-    public static void editarItemDef(PadraodasClasses p1, ItemdeDEF itemDef){
-        p1.itemDef.remove(0);
-        p1.addItemDef(itemDef);
+    public static void editarItemDef(PadraoDoJogador j1, ItemdeDEF itemDef){
+        j1.getClasses().get(0).getItemDef().remove(0);
+        j1.getClasses().get(0).getItemDef().add(itemDef);
     }
     
     public static void editarForca(PadraodasClasses p1, int forca){
