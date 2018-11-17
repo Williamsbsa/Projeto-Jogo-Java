@@ -1012,41 +1012,6 @@ public class ProjetoJogo {
         System.out.println("******************************");
         //fim da fase
         
-        /** cadastrando e listando itens
-        ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
-        ItemdeDEF d1 = new ItemdeDEF("Escudo","Escudo enviado de Narnia", 77);
-        CadastrarItem.addItemATK(a1);
-        CadastrarItem.addItemDEF(d1);
-        ListarItem.editarAtaqueItenATK(a1, 105);
-        ListarItem.listarItensATK();
-        ListarItem.listarItensDEF();
-        
-        // cadastrando e listando classes
-        PadraodasClasses mago = new PadraodasClasses("Mago","Força elevada, porém defesa baixa",95,34);
-        mago.addItemAtk(a1);
-        mago.addItemDef(d1);
-        CadastrarClasse.addClasse(mago);
-        ListarClasse.listarClasse();
-        
-        // cadastrando e listando monstros
-        MonstroNormal m1 = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 45,25);
-        m1.addItemATK(a1);
-        m1.addItemDEF(d1);
-        Chefao c1 = new Chefao("El diablo","Criatura das trevas, tome cuidado!!",88,200,"Apos ser traido e abandonado pela propria familia, El diblo construiu seu proprio imperio no submundo, jurando tomar o mundo para si");
-        c1.addItemATK(a1);
-        c1.addItemDEF(d1);
-        CadastrarMonstro.addMonstroNormal(m1);
-        CadastrarMonstro.addChefao(c1);
-        ListarMonstros.listarMonstroNormal();
-        ListarMonstros.listarChefao();
-    
-        // cadastrando e listando fases
-        PadraodasFases f1 = new PadraodasFases("Ilha amaldicoada","Lugar assustador onde voce acabou de acordar", 1);
-        CadastrarFase.addMonstroNormal(m1);
-        CadastrarFase.addChefao(c1);
-        CadastrarFase.addFase(f1);
-        ListarFase.listarFase();
-        */
     }
     
 }
