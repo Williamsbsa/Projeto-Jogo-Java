@@ -665,16 +665,352 @@ public class ProjetoJogo {
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
         System.out.println("******************************");
-        //falta fazer com que vc n tenha sua vida restaurada ao ir enfrentar o boss
+        //fim da fase
         
+        //FASE 3
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 3...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(2, 4, 5); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("espectro")){
+                escudoEnfrentBoss = batalha(jogador,4,almafa,poeiraf); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("gargula")){
+                escudoEnfrentBoss = batalha(jogador,5,lascadep,armaduradep);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nHm, você esta começando a se mostrar alguém interessante..");
+        ListarFase.listarChefaoDaFase(2);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,2,cajmag,vestesmag,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Até que foi divertido ver de camarote essa batalha kkk");
+        jogador.setMoeda(30);
+        jogador.setLevel(4);
+        jogador.setSaude(400);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 4
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 4...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(3, 6, 7); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("escorpiao vermelho")){
+                escudoEnfrentBoss = batalha(jogador,6,ferraoven,carapver); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("verme de areia do deserto")){
+                escudoEnfrentBoss = batalha(jogador,7,dentesg,areiap);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nOlha só, acho que estava mesmo te subestimando, éer parabéns pela Vitória");
+        ListarFase.listarChefaoDaFase(3);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,3,bastaodam,sarcofagop,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Ual, você conseguiu mesmo matar o Anubis, eu morria de medo desse cara, como eu posso dizer,.. Obrigado!!");
+        jogador.setMoeda(40);
+        jogador.setLevel(5);
+        jogador.setSaude(500);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 5
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 5...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(4, 8, 9); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("tigre dente de sabre branco")){
+                escudoEnfrentBoss = batalha(jogador,8,dentedes,tunicab); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("gorila gigante")){
+                escudoEnfrentBoss = batalha(jogador,9,maodeg,escudodec);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nCaramba, cuidado pois de agora em diante os monstros antes do Boss ficam cada vez mais fortes");
+        ListarFase.listarChefaoDaFase(4);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,4,bastaorex,esqueletoj,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Parece que alguém vai poder vender uns ossos de dinossouro pra fazer uma grana kkk");
+        jogador.setMoeda(50);
+        jogador.setLevel(6);
+        jogador.setSaude(600);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
+
+        //FASE 6
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 6...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(5, 10, 11); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("leao congelado")){
+                escudoEnfrentBoss = batalha(jogador,10,harpal,jubac); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("golem de gelo")){
+                escudoEnfrentBoss = batalha(jogador,11,estacagel,escudogel);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nBoa Amig... ée posso te chamar disso?");
+        ListarFase.listarChefaoDaFase(5);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,5,furacaogel,nevep,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Hahaha você acabou com ele, muito bom parceiro!!");
+        jogador.setMoeda(60);
+        jogador.setLevel(7);
+        jogador.setSaude(700);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
+
+        //FASE 7
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 7...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(6, 12, 13); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("espirito das chamas")){
+                escudoEnfrentBoss = batalha(jogador,12,triquei,escudocinz); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("fenix")){
+                escudoEnfrentBoss = batalha(jogador,13,arcofogo,armadurachamav);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nNice amigo, agora acaba com a raça desse Boss !! hehe");
+        ListarFase.listarChefaoDaFase(6);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,6,espadaflam,couradrag,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Mais uma criatura das antigas pra conta em kkk, muito bom !!");
+        jogador.setMoeda(70);
+        jogador.setLevel(8);
+        jogador.setSaude(800);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 8
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 8...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(7, 14, 15); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("cavaleiro sem cabeca")){
+                escudoEnfrentBoss = batalha(jogador,14,lancacav,cabecaflam); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("hidra")){
+                escudoEnfrentBoss = batalha(jogador,15,cabechidra,escamahidra);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nBoa amigo, mas por favor tome muito cuidado pois algo me indica que você está cada vez mais próximo do .. FIM !!");
+        ListarFase.listarChefaoDaFase(7);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,7,caudasq,cerebroquim,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Parceiro, eu estou ficando com mau pressentimento, preste muita atenção em suas proximas batalhas, não quero perder meu único amigo..");
+        jogador.setMoeda(80);
+        jogador.setLevel(9);
+        jogador.setSaude(900);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 9
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 9...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(8, 16, 17); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("maxxor")){
+                escudoEnfrentBoss = batalha(jogador,16,chuvap,cancaop); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("cavalo marinho perverso")){
+                escudoEnfrentBoss = batalha(jogador,17,ferraduraaco,chifrecav);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nEST..CO..DIFICUL...DE..ME..COMUNIC...CO...VOCE..SOCORRO!...");
+        ListarFase.listarChefaoDaFase(8);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,8,tentaculoc,tentaculocd,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("SE..VOC..ESTI...LEND..ISS..SAIBA..QU..EU..NUNC..ESQUECEREI..OBRIGAD..POR..TUDO..");
+        jogador.setMoeda(90);
+        jogador.setLevel(10);
+        jogador.setSaude(1000);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
-        
-        
-        
+        //FASE 10
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 10...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(9, 18, 19); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("anjo caido")){
+                escudoEnfrentBoss = batalha(jogador,18,espnegra,assasanjo); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("necromancer")){
+                escudoEnfrentBoss = batalha(jogador,19,cajdonecromante,capanecromante);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\n...\"barulhos estáticos\" ...");
+        ListarFase.listarChefaoDaFase(9);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,9,presennsup,presensupr,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Não consigo acreditar CONSEGUIMOS !!! Muito obrigado por me salvar, e salvar o Mundo "+ nome+" você foi o melhor amigo que eu já tive, agora podemos COMEMORAR !!!");
+        System.out.println("Estatísticas Finais Abaixo, Parabéns Pela Vitória !!");
+        jogador.setMoeda(90);
+        jogador.setLevel(11);
+        jogador.setSaude(1100);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
         /** cadastrando e listando itens
         ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
