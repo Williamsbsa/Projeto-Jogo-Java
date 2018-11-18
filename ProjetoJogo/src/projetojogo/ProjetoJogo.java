@@ -5,17 +5,15 @@
  */
 package projetojogo;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-import static javafx.application.Platform.exit;
 
 /**
  *
  * @author braga
  */
 public class ProjetoJogo {
-        static void batalha(PadraoDoJogador jogador, int indice, ItemdeATK itemdeAtkMonstro, ItemdeDEF itemdeDefMonstro){
+        static int batalha(PadraoDoJogador jogador, int indice, ItemdeATK itemdeAtkMonstro, ItemdeDEF itemdeDefMonstro){ //batalha contra monstro normal
             int danoClasse = jogador.getClasses().get(0).getForca();
             int escudoClasse = jogador.getClasses().get(0).getDefesa();
             int danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
@@ -29,6 +27,7 @@ public class ProjetoJogo {
             int forcaMonstro = ListarFase.forcaTotalMonstro(indiceMonstro);
             int escudoMonstro = ListarFase.escudoTotalMonstro(indiceMonstro);
             int atacar = 0;
+            int contadorAtaque = 0;
                 while(true){
                     System.out.print("\nO Turno é seu, digite 1 quando quiser atacar: ");
                     atacar = on.nextInt();
@@ -52,8 +51,7 @@ public class ProjetoJogo {
                                 System.out.print(">>>>>>>>>>([1] - para Item de Atk) ou ([2] - para Item de Def)<<<<<<<<<< :");
                                 int escolherItem = on.nextInt();
                                 if (escolherItem == 1){//logica do item de atk
-                                    PadraodasClasses classeEscolhida = jogador.classes.get(0);
-                                    ListarClasse.editarItemAtk(classeEscolhida, itemdeAtkMonstro);//mudamos item aqui
+                                    ListarClasse.editarItemAtk(jogador, itemdeAtkMonstro);//mudamos item aqui
                                     danoClasse = jogador.getClasses().get(0).getForca();//aqui pra baixo é so pro print do seu danoTotal sair certo, já que mudou os valores.
                                     danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
                                     danoTotal = danoClasse + danoItem;
@@ -65,11 +63,15 @@ public class ProjetoJogo {
                                     break;
                                 }else{//logica do item de def
                                     PadraodasClasses classeEscolhida = jogador.classes.get(0);
-                                    ListarClasse.editarItemDef(classeEscolhida, itemdeDefMonstro);//mudamos item aqui
+                                    ListarClasse.editarItemDef(jogador, itemdeDefMonstro);//mudamos item aqui
                                     escudoClasse = jogador.getClasses().get(0).getDefesa();
                                     escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
                                     saude = jogador.getSaude();
                                     escudoTotal = escudoClasse + escudoItem + saude;
+                                    if (contadorAtaque>0){
+                                        contadorAtaque = contadorAtaque * forcaMonstro;
+                                        escudoTotal = escudoTotal - contadorAtaque;
+                                    }
                                     System.out.println("Seu novo Status(sem recuperar seu escudo) agora é... ");
                                     System.out.println("**********************************************************************************");
                                     System.out.println("Dano Total = "+danoTotal);
@@ -78,6 +80,11 @@ public class ProjetoJogo {
                                     break;
                                 }
                             }else{//se nao quiser pegar itens
+                                System.out.println("Seu Status(sem recuperar seu escudo) agora é... ");
+                                System.out.println("**********************************************************************************");
+                                System.out.println("Dano Total = "+danoTotal);
+                                System.out.println("Escudo total = "+escudoTotal);
+                                System.out.println("**********************************************************************************");
                                 break;
                             }
                             }
@@ -87,13 +94,15 @@ public class ProjetoJogo {
                         int aleatorio = (sorteio.nextInt(2));
                         if(aleatorio == 1){ //se o numero aleatorio for 1 entao o monstro te acerta
                             escudoTotal = escudoTotal - forcaMonstro;
+                            contadorAtaque = contadorAtaque + 1;
                             if (escudoTotal>0){
                                 System.out.println("Seu escudo total agora está em: "+ escudoTotal);
                                 System.out.println("=====================================================");
                             }else if(escudoTotal<=0){
                                 System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
                                 System.out.println("=====================================================");
-                                return;
+                                System.exit(0);
+                                //return; nao funciona dentro de funcao
                                 //exit() nao funcionou;
                             }
                         }else{
@@ -103,21 +112,26 @@ public class ProjetoJogo {
                         }
                     }
                 }
+            return escudoTotal;
         }
-        static void batalhaBoss(PadraoDoJogador jogador, int indice, ItemdeATK itemdeAtkBoss, ItemdeDEF itemdeDefBoss){
+        static void batalhaBoss(PadraoDoJogador jogador, int indice, ItemdeATK itemdeAtkBoss, ItemdeDEF itemdeDefBoss, int escudoEnfrentBoss){ // batalha contra boss
             int danoClasse = jogador.getClasses().get(0).getForca();
             int escudoClasse = jogador.getClasses().get(0).getDefesa();
             int danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
             int escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
             int saude = jogador.getSaude();
             int danoTotal = danoClasse + danoItem;
-            int escudoTotal = escudoClasse + escudoItem + saude;
+            int escudoTotal = escudoEnfrentBoss;
             Scanner on = new Scanner(System.in);
             int indiceBoss = indice;
             ListarFase.listarBossEnfrentando(indice);
             int forcaBoss = ListarFase.forcaTotalBoss(indiceBoss);
             int escudoBoss = ListarFase.escudoTotalBoss(indiceBoss);
             int atacar = 0;
+            int contadorAtaque = 0;
+            try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+            System.out.println("\n!!!!!\"BARULHOS AMEDRONTADORES\"!!!!!");
+            try { Thread.sleep (1000); } catch (InterruptedException ex) {}
                 while(true){
                     System.out.print("\nO Turno é seu, digite 1 quando quiser atacar: ");
                     atacar = on.nextInt();
@@ -141,8 +155,8 @@ public class ProjetoJogo {
                                 System.out.print(">>>>>>>>>>([1] - para Item de Atk) ou ([2] - para Item de Def)<<<<<<<<<< :");
                                 int escolherItem = on.nextInt();
                                 if (escolherItem == 1){//logica do item de atk
-                                    PadraodasClasses classeEscolhida = jogador.classes.get(0);
-                                    ListarClasse.editarItemAtk(classeEscolhida, itemdeAtkBoss);//mudamos item aqui
+                                    //PadraodasClasses classeEscolhida = jogador.classes.get(0);
+                                    ListarClasse.editarItemAtk(jogador, itemdeAtkBoss);//mudamos item aqui
                                     danoClasse = jogador.getClasses().get(0).getForca();//aqui pra baixo é so pro print do seu danoTotal sair certo, já que mudou os valores.
                                     danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
                                     danoTotal = danoClasse + danoItem;
@@ -154,11 +168,15 @@ public class ProjetoJogo {
                                     break;
                                 }else{//logica do item de def
                                     PadraodasClasses classeEscolhida = jogador.classes.get(0);
-                                    ListarClasse.editarItemDef(classeEscolhida, itemdeDefBoss);//mudamos item aqui
+                                    ListarClasse.editarItemDef(jogador, itemdeDefBoss);//mudamos item aqui
                                     escudoClasse = jogador.getClasses().get(0).getDefesa();
                                     escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
                                     saude = jogador.getSaude();
                                     escudoTotal = escudoClasse + escudoItem + saude;
+                                    if (contadorAtaque>0){
+                                        contadorAtaque = contadorAtaque * forcaBoss;
+                                        escudoTotal = escudoTotal - contadorAtaque;
+                                    }
                                     System.out.println("Seu novo Status(sem recuperar seu escudo) agora é... ");
                                     System.out.println("**********************************************************************************");
                                     System.out.println("Dano Total = "+danoTotal);
@@ -176,13 +194,15 @@ public class ProjetoJogo {
                         int aleatorio = (sorteio.nextInt(2));
                         if(aleatorio == 1){ //se o numero aleatorio for 1 entao o monstro te acerta
                             escudoTotal = escudoTotal - forcaBoss;
+                            contadorAtaque = contadorAtaque + 1;
                             if (escudoTotal>0){
                                 System.out.println("Seu escudo total agora está em: "+ escudoTotal);
                                 System.out.println("=====================================================");
                             }else if(escudoTotal<=0){
                                 System.out.println("GAME OVER... :( parece que você não foi capaz desta vez, volta quando se sentir confiante.");
                                 System.out.println("=====================================================");
-                                return;
+                                System.exit(0);
+                                //return; nao funciona em funcao
                                 //exit() nao funcionou;
                             }
                         }else{
@@ -213,7 +233,7 @@ public class ProjetoJogo {
         ItemdeATK espadaGob = new ItemdeATK("Espada Goblin","Espada forjada em esconderijo Goblin", 15);
         ItemdeDEF armaduraPano= new ItemdeDEF("Armadura de Pano", "Armadura fabricada pela mãe do Goblin.", 10);
         
-        ItemdeATK ossoRat = new ItemdeATK("Osso de Ratazana"," Osso da última refeição do pequeno Slime", 10);
+        ItemdeATK ossoRat = new ItemdeATK("Osso de Ratazana","Osso da última refeição do pequeno Slime", 10);
         ItemdeDEF escudoGosm= new ItemdeDEF("Escudo Gosmento", "Escudo fabricado no primeiro dia da vida do pequeno Slime.", 15);
         
         ItemdeATK porreteOgro = new ItemdeATK("Porrete de Ogro","Porrete tradicional de Ogro, passado de geração em geração.", 30);
@@ -225,32 +245,32 @@ public class ProjetoJogo {
         ItemdeATK queliceras = new ItemdeATK("Quelíceras da Aranha Negra","Machucam e liberam veneno",45);  
         ItemdeDEF exoaranha = new ItemdeDEF("Exoesqueleto de Aranha Negra","Carapaça muito resistente",55);  
           
-        ItemdeATK  machadohiena= new ItemdeATK("Machado poderoso de aventureiro"," Machado poderoso para um aventureiro iniciante",55);  
+        ItemdeATK  machadohiena= new ItemdeATK("Machado poderoso de aventureiro","Machado poderoso para um aventureiro iniciante",55);  
         ItemdeDEF  armadurahiena= new ItemdeDEF("Armadura do Guerreiro","Armadura de ferro maciço ",65);  
           
         ItemdeATK  almafa= new ItemdeATK("Alma de Fantasma","Item muito requisitado por Magos iniciantes",30);  
         ItemdeDEF  poeiraf= new ItemdeDEF("Poeira Fantasmagórica","Item não poderoso porém muito bonito",30);  
           
-        ItemdeATK  lascadep= new ItemdeATK(" Lasca de Pedra","Criação especial da Gárgula",45);  
-        ItemdeDEF  armaduradep= new ItemdeDEF(" Armadura de Pedra","Tão dura quanto uma Gárgula",60);  
+        ItemdeATK  lascadep= new ItemdeATK("Lasca de Pedra","Criação especial da Gárgula",45);  
+        ItemdeDEF  armaduradep= new ItemdeDEF("Armadura de Pedra","Tão dura quanto uma Gárgula",60);  
           
         ItemdeATK  cajmag= new ItemdeATK("Cajado do Mago Cinzento","Não se engane pela aparência, este item é muito poderoso",65);  
-        ItemdeDEF  vestesmag= new ItemdeDEF(" Vestes da Academia de Magia","Uniforme da escola de magia mais procurada em todo mundo",45);  
+        ItemdeDEF  vestesmag= new ItemdeDEF("Vestes da Academia de Magia","Uniforme da escola de magia mais procurada em todo mundo",45);  
           
         ItemdeATK  ferraoven= new ItemdeATK("Ferrão Venenoso","Contém veneno e mata lentamente",65);  
-        ItemdeDEF  carapver= new ItemdeDEF("Carapaça Vermelha"," Suporta até o calor mais forte do Deserto",55);  
+        ItemdeDEF  carapver= new ItemdeDEF("Carapaça Vermelha","Suporta até o calor mais forte do Deserto",55);  
           
-        ItemdeATK  dentesg= new ItemdeATK("Dentes Giratórios do Verme do Deserto"," Mesmo morto estes dentes continuam a girar pela eternidade, se o portador desejar",70);  
+        ItemdeATK  dentesg= new ItemdeATK("Dentes Giratórios do Verme do Deserto","Mesmo morto estes dentes continuam a girar pela eternidade, se o portador desejar",70);  
         ItemdeDEF  areiap= new ItemdeDEF("Areia Processada","Gerada dentro do estômago do Verme",60);  
           
         ItemdeATK  bastaodam= new ItemdeATK("Bastão da Morte","Conhecido por ser a arma que define quem vive e morre",80);  
-        ItemdeDEF  sarcofagop= new ItemdeDEF("Sarcófago Protetor"," Que a bênção dos antigos Faraós o acompanhe",60);  
+        ItemdeDEF  sarcofagop= new ItemdeDEF("Sarcófago Protetor","Que a bênção dos antigos Faraós o acompanhe",60);  
           
         ItemdeATK  dentedes= new ItemdeATK("Dente de Sabre","O famoso Dente de Sabre do Tigre mais perigoso do mundo",75);  
         ItemdeDEF  tunicab= new ItemdeDEF("Túnica Branca","Aquece Qualquer aventureiro",75);  
           
-        ItemdeATK  maodeg= new ItemdeATK("Mão de Gorila"," Um cruzado de direita dessa mão nocauteia qualquer um",75);  
-        ItemdeDEF  escudodec= new ItemdeDEF("Escudo de Cipó"," Achado na toca de Gorilas",85);  
+        ItemdeATK  maodeg= new ItemdeATK("Mão de Gorila","Um cruzado de direita dessa mão nocauteia qualquer um",75);  
+        ItemdeDEF  escudodec= new ItemdeDEF("Escudo de Cipó","Achado na toca de Gorilas",85);  
           
         ItemdeATK  bastaorex= new ItemdeATK("Bastão Conjurador de Rex","Usada por tribos de magos na antiguidade para conjurar o Rei",85);  
         ItemdeDEF  esqueletoj= new ItemdeDEF("Esqueleto Jurássico","Ossos muito rígidos ",85);  
@@ -258,34 +278,34 @@ public class ProjetoJogo {
         ItemdeATK  harpal= new ItemdeATK("Harpa do Leão","Libera um poderoso rugido que atordoa adversários",80);  
         ItemdeDEF  jubac= new ItemdeDEF("Juba Congelada","Além de exibir poder é muito eficaz para se defender",100);  
           
-        ItemdeATK  estacagel= new ItemdeATK("Estaca de Gelo"," Parte do corpo do Golem de Gelo",95);  
+        ItemdeATK  estacagel= new ItemdeATK("Estaca de Gelo","Parte do corpo do Golem de Gelo",95);  
         ItemdeDEF  escudogel= new ItemdeDEF("Escudo de gelo", "Parte do corpo do Golem de Gelo",95);  
           
         ItemdeATK  furacaogel= new ItemdeATK("Furacão de Gelo","Ninguém nunca pensou que desse para domar um furacão",105);  
         ItemdeDEF  nevep= new ItemdeDEF("Neve Protetora","É muito difícil atravessar essa barreira ",95);  
           
-        ItemdeATK  triquei= new ItemdeATK("Tridente Queimado"," Antigamente era posse de Poseidon",110);  
+        ItemdeATK  triquei= new ItemdeATK("Tridente Queimado","Antigamente era posse de Poseidon",110);  
         ItemdeDEF  escudocinz= new ItemdeDEF("Escudo de Cinzas","O que restou de um monstro perturbado",100);  
           
-        ItemdeATK  arcofogo= new ItemdeATK("Arco de Fogo"," Das asas da Fênix surgiu um Arco extremamente preciso",100);  
-        ItemdeDEF  armadurachamav= new ItemdeDEF("Armadura da Chama Viva"," Dizem que essa armadura faz com que a Fênix renasça das cinzas",120);  
+        ItemdeATK  arcofogo= new ItemdeATK("Arco de Fogo","Das asas da Fênix surgiu um Arco extremamente preciso",100);  
+        ItemdeDEF  armadurachamav= new ItemdeDEF("Armadura da Chama Viva","Dizem que essa armadura faz com que a Fênix renasça das cinzas",120);  
           
         ItemdeATK  espadaflam= new ItemdeATK("Espada Flamejante","Após a morde de um Dragão sua alma pode ser introduzida em um objeto, esta espada possuí a alma do dragão mais poderoso",130);  
         ItemdeDEF  couradrag= new ItemdeDEF("Couraça de Dragão","Nem mesmo a mais poderosa espada pode atravessá-la",100);  
           
-        ItemdeATK  lancacav= new ItemdeATK("Lança de Cavaleiro"," Antiga lança de um nobre cavaleiro",115);  
-        ItemdeDEF  cabecaflam= new ItemdeDEF("Cabeça Flamejante"," A lenda do Cavaleiro sem Cabeça continua",125);  
+        ItemdeATK  lancacav= new ItemdeATK("Lança de Cavaleiro","Antiga lança de um nobre cavaleiro",115);  
+        ItemdeDEF  cabecaflam= new ItemdeDEF("Cabeça Flamejante","A lenda do Cavaleiro sem Cabeça continua",125);  
           
         ItemdeATK  cabechidra= new ItemdeATK("Cabeça de Hidra ","Uma arma para perder a cabeça",120);  
-        ItemdeDEF  escamahidra= new ItemdeDEF("Escamas de Hidra","ão fortes que até mesmo Hércules não conseguiu perfurar",130);  
+        ItemdeDEF  escamahidra= new ItemdeDEF("Escamas de Hidra","Tão fortes que até mesmo Hércules não conseguiu perfurar",130);  
           
-        ItemdeATK  caudasq= new ItemdeATK("Cauda de Serpente de Quimera"," Uma arma inteligente que pode atacar em áreas que aventureiros não conhecem do oponente",115);  
+        ItemdeATK  caudasq= new ItemdeATK("Cauda de Serpente de Quimera","Uma arma inteligente que pode atacar em áreas que aventureiros não conhecem do oponente",115);  
         ItemdeDEF  cerebroquim= new ItemdeDEF("Cérebro de Quimera","Porque um escudo potente quando se pode prever todos os movimentos em uma batalha",145);  
           
         ItemdeATK  chuvap= new ItemdeATK("Chuva de Pedras","Potente contra um exército de inimigos",125);  
         ItemdeDEF  cancaop= new ItemdeDEF("Canção da Proteção","Além de linda, pode proteger um aventureiro",145);  
           
-        ItemdeATK  ferraduraaco= new ItemdeATK("Ferradura do Mar"," Pode ser que sua sorte melhore com uma arma dessas",130);  
+        ItemdeATK  ferraduraaco= new ItemdeATK("Ferradura do Mar","Pode ser que sua sorte melhore com uma arma dessas",130);  
         ItemdeDEF  chifrecav= new ItemdeDEF("Chifre de Cavalo Marinho","Muito mais duro que um diamante",150);  
           
         ItemdeATK  tentaculoc= new ItemdeATK("Tentáculo do Cthulhu","Cthulhu não precisa de mais nada além de seus tentáculos e sua presença",150);  
@@ -297,8 +317,8 @@ public class ProjetoJogo {
         ItemdeATK  cajdonecromante= new ItemdeATK("Cajado no Necromante","Poder suficiente para destruir mundos",145);  
         ItemdeDEF  capanecromante= new ItemdeDEF("Capa do Necromante","Presente especial do Rei Demônio",135);  
           
-        ItemdeATK  presennsup= new ItemdeATK(" Presença Suprema"," Ninguém pode sobreviver a presença do senhor das trevas",999999);  
-        ItemdeDEF  presensupr= new ItemdeDEF(" Presença Suprema"," Ninguém pode sobreviver a presença do senhor das trevas",200); 
+        ItemdeATK  presennsup= new ItemdeATK("Presença Suprema","Ninguém pode sobreviver a presença do senhor das trevas",999999);  
+        ItemdeDEF  presensupr= new ItemdeDEF("Presença Suprema","Ninguém pode sobreviver a presença do senhor das trevas",200); 
         
         //Criando Classes
         PadraodasClasses guerreiro = new PadraodasClasses("Guerreiro","Força e Defesa altos, porém não sabe manusear armas complicadas.",25,25);
@@ -317,7 +337,7 @@ public class ProjetoJogo {
         ogro.addItemATK(porreteOgro);
         ogro.addItemDEF(tangaOgro);
         
-        MonstroNormal morcss = new MonstroNormal("Morcego Sanguessuga"," O sugador de sangue voador", 30,80);
+        MonstroNormal morcss = new MonstroNormal("Morcego Sanguessuga","O sugador de sangue voador", 30,80);
         morcss.addItemATK(presasmorc);
         morcss.addItemDEF(pelodemorce);
         MonstroNormal  arann= new MonstroNormal("Aranha Negra","Também conhecida como Viúva Negra", 40,70);
@@ -337,13 +357,13 @@ public class ProjetoJogo {
         magoc.addItemATK(cajmag);
         magoc.addItemDEF(vestesmag);
         
-        MonstroNormal escpv = new MonstroNormal("Escorpião Vermelho"," É muito conhecido por nômades que tentam cruzar o Deserto", 65,65);
+        MonstroNormal escpv = new MonstroNormal("Escorpião Vermelho","É muito conhecido por nômades que tentam cruzar o Deserto", 65,65);
         escpv.addItemATK(ferraoven);
         escpv.addItemDEF(carapver);
         MonstroNormal verme = new MonstroNormal("Verme de Areia do Deserto","Causa muitas mortes pelos buracos na areia", 80,50);
         verme.addItemATK(dentesg);
         verme.addItemDEF(areiap);
-        Chefao anub= new Chefao("Anubis"," O guardião e guia dos mortos",100,85,"Anubis percebeu um número anormal de seres sendo enviados ao seu encontro e quis saber o que estava acontecendo, quando chegou até você quis o resolver problema da forma mais rápida possível");
+        Chefao anub= new Chefao("Anubis","O guardião e guia dos mortos",100,85,"Anubis percebeu um número anormal de seres sendo enviados ao seu encontro e quis saber o que estava acontecendo, quando chegou até você quis o resolver problema da forma mais rápida possível");
         anub.addItemATK(bastaodam);
         anub.addItemDEF(sarcofagop);
         
@@ -354,11 +374,11 @@ public class ProjetoJogo {
         MonstroNormal  gorila= new MonstroNormal("Gorila Gigante","Um monstro muito temido por vilarejos antigos", 70,70);
         gorila.addItemATK(maodeg);
         gorila.addItemDEF(escudodec);
-        Chefao  rex= new Chefao("Tiranossauro Rex","Também conhecido como o Rei do período Jurássico",120,85," O Tiranossauro Rex vê tudo que está em sua frente como uma presa, e desta vez não foi diferente ");
+        Chefao  rex= new Chefao("Tiranossauro Rex","Também conhecido como o Rei do período Jurássico",120,85,"O Tiranossauro Rex vê tudo que está em sua frente como uma presa, e desta vez não foi diferente ");
         rex.addItemATK(bastaorex);
         rex.addItemDEF(esqueletoj);
         
-        MonstroNormal lc = new MonstroNormal("Leão Congelado"," Um dos guardiões da montanha", 85,65);
+        MonstroNormal lc = new MonstroNormal("Leão Congelado","Um dos guardiões da montanha", 85,65);
         lc.addItemATK(harpal);
         lc.addItemDEF(jubac);
         MonstroNormal  goleng= new MonstroNormal("Golem de Gelo","Criatura formada apenas de gelo", 60,90);
@@ -371,7 +391,7 @@ public class ProjetoJogo {
         MonstroNormal espc= new MonstroNormal("Espírito das Chamas","Uma chama de fogo viva ", 90,70);
         espc.addItemATK(triquei);
         espc.addItemDEF(escudocinz);
-        MonstroNormal  fenix= new MonstroNormal("Fênix"," Pássaro de fogo muito poderoso com a habilidade de renascer das cinzas após um período de tempo, é bom derrota-lo e correr", 85,75);
+        MonstroNormal  fenix= new MonstroNormal("Fênix","Pássaro de fogo muito poderoso com a habilidade de renascer das cinzas após um período de tempo, é bom derrota-lo e correr", 85,75);
         fenix.addItemATK(arcofogo);
         fenix.addItemDEF(armadurachamav);
         Chefao dragao= new Chefao("Dragão de Fogo","Dragão com a pele tão forte quanto metal e bafo tão quente quanto um vulcão",125,120,"Todos os dragões gostam de riquezas, após descobrir uma montanha que possuía um grande tesouro resolveu toma-lo para si e até hoje, séculos depois o protege com sua vida ");
@@ -404,7 +424,7 @@ public class ProjetoJogo {
         MonstroNormal necrom = new MonstroNormal("Necromancer","O braço direito do Rei dos Demônios conhecido pelos seus feitos históricos em prol das forças do mal", 155,140);
         necrom.addItemATK(cajdonecromante);
         necrom.addItemDEF(capanecromante);
-        Chefao  reidem= new Chefao(" Rei Demônio"," Durante a criação do universo todas as impurezas dos mundos foram armazenadas em um só local, dando vida ao ser mais diabólico que existe, até o Deus mais poderoso foi subjugado por ele",150,150," Dominar tudo e a todos é a motivação do ser supremo ");
+        Chefao  reidem= new Chefao("Rei Demônio","Durante a criação do universo todas as impurezas dos mundos foram armazenadas em um só local, dando vida ao ser mais diabólico que existe, até o Deus mais poderoso foi subjugado por ele",150,150," Dominar tudo e a todos é a motivação do ser supremo ");
         reidem.addItemATK(presennsup);
         reidem.addItemDEF(presensupr);
         
@@ -520,22 +540,22 @@ public class ProjetoJogo {
             System.out.print("\nDigite o nome da Classe que escolheu: ");
             escolhaCla = on.nextLine();
             if (escolhaCla.equalsIgnoreCase("guerreiro")){
-                jogador = new PadraoDoJogador(nome,idade,10,1,0); //nome,idade,saude,level,moeda;
+                jogador = new PadraoDoJogador(nome,idade,100,1,0); //nome,idade,saude,level,moeda;
                 jogador.addClasse(guerreiro);
                 break;
             }
             else if (escolhaCla.equalsIgnoreCase("arqueiro")){
-                jogador = new PadraoDoJogador(nome,idade,10,1,0);
+                jogador = new PadraoDoJogador(nome,idade,100,1,0);
                 jogador.addClasse(arqueiro);
                 break;
             }
             else if (escolhaCla.equalsIgnoreCase("ladino")){
-                jogador = new PadraoDoJogador(nome,idade,10,1,0);
+                jogador = new PadraoDoJogador(nome,idade,100,1,0);
                 jogador.addClasse(ladino);
                 break;
             }
             else if (escolhaCla.equalsIgnoreCase("mago")){
-                jogador = new PadraoDoJogador(nome,idade,10,1,0);
+                jogador = new PadraoDoJogador(nome,idade,100,1,0);
                 jogador.addClasse(mago);
                 break;
             }
@@ -549,88 +569,449 @@ public class ProjetoJogo {
         saude = jogador.getSaude();
         danoTotal = danoClasse + danoItem;
         escudoTotal = escudoClasse + escudoItem + saude;
-        System.out.println("Sua Saúde começa em 10, você consegue aumentá-la conforme passa de Level.");
+        System.out.println("Sua Saúde começa em 100, você consegue aumentá-la conforme passa de Level.");
         System.out.println("Dano Total = "+danoTotal);
         System.out.println("Escudo total = "+escudoTotal);
         System.out.println("**********************************************************************************");
         
         System.out.println("\nAgora você estará entrando na primeira fase, leia atentamente as informações, pois terá que fazer uma escolha entre os 2 monstros normais.");
-        System.out.println("Lembre-se que independente do Monstro que você matar, ele irá dropar seus itens, você só poderá escolher pegar de Atk ou Def, e se pegar, ele substituirá seu atual.");
-        //>>>>>>>>>>>>>>>>>>COMEÇA AQUI ONDE VOCÊ IRÁ COPIAR A LÓGICA PARA COLAR MAIS EMBAIXO NAS OUTRAS FASES.
-        ListarFase.listarFase(0); //isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
+        System.out.println("Lembre-se que de acordo com o Monstro que você matar, ele irá dropar seus itens, você só poderá escolher pegar de Atk ou Def, e se pegar, ele substituirá seu atual.");
+        int escudoEnfrentBoss = 0;
+        //FASE 1
+//>>>>>>>>>>>>>>>>>>COMEÇA AQUI ONDE VOCÊ IRÁ COPIAR A LÓGICA PARA COLAR MAIS EMBAIXO NAS OUTRAS FASES.
+        ListarFase.listarFase(0,0,1); //PRIMEIRO VC PASSA O INDICE DA FASE, DPS O INDICE DO PRIMEIRO MONTRO, E EM SEGUIDA DO SEGUNDO... isso não lista o chefão, pra ficar mais legal pro jogador só descobrir após derrotar um dos monstros normais.
         while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
-            System.out.print("\nDigite qual monstro deseja atacar (sem acentos): ");
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
             String escolhaMonstro;
             escolhaMonstro = on.nextLine();
             /*int forcaMonstro;
             int escudoMonstro;
             int indiceMonstro;*/
             if (escolhaMonstro.equalsIgnoreCase("goblin")){
-                batalha(jogador,0,espadaGob,armaduraPano); //toda lógica da batalha esta simplesmente nisso kkk
+                escudoEnfrentBoss = batalha(jogador,0,espadaGob,armaduraPano); //toda lógica da batalha esta simplesmente nisso kkk
                 break;
                 }
             else if (escolhaMonstro.equalsIgnoreCase("slime bebe")){
-                batalha(jogador,1,ossoRat,escudoGosm);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                escudoEnfrentBoss = batalha(jogador,1,ossoRat,escudoGosm);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
                 break;
             }      
         }
 
-        System.out.println("\nParece que você conseguiu passar do primeiro inimigo, eu acabei de perder minha aposta, mas quero ver se consegue derrubar o grandão agora...");
+        System.out.println("\nParece que você conseguiu passar do primeiro Monstro, eu acabei de perder minha aposta, mas quero ver se consegue derrubar o grandão agora...");
         ListarFase.listarChefaoDaFase(0);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
-        batalhaBoss(jogador,0,porreteOgro,tangaOgro);
-        //FECHA AQUI A LÓGICA ONDE VC PRECISA COPIAR PRA FASER AS PROXIMAS FASES<<<<<<<<<<<<<<<<<<<<<<<<
+        batalhaBoss(jogador,0,porreteOgro,tangaOgro,escudoEnfrentBoss);
+        try { Thread.sleep (500); } catch (InterruptedException ex) {}
+        System.out.println(".");
+        try { Thread.sleep (500); } catch (InterruptedException ex) {}
+        System.out.println("..");
+        try { Thread.sleep (500); } catch (InterruptedException ex) {}
+        System.out.println("... éééérrr, parece que você conseguiu não é mesmo, tudo bem, o mérito foi seu, porém não se acostume, já que foi claramente sorte de principiante, e a partir daqui as coisas vão ficar mais desafiadoras hmm..");
+        System.out.println("Pelo jeito você está com sorte mesmo, acabaram de me dizer aqui que a cada Chefe derrotado você passa de Level e recupera vida kkkk da prá acreditar? Pois é, estão pegando leve com você aparentemente.");
+        jogador.setMoeda(10);
+        jogador.setLevel(2);
+        jogador.setSaude(200);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+//FECHA AQUI A LÓGICA ONDE VC PRECISA COPIAR PRA FASER AS PROXIMAS FASES<<<<<<<<<<<<<<<<<<<<<<<<
+
+        //FASE 2
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 2...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(1, 2, 3); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("morcego sanguessuga")){
+                escudoEnfrentBoss = batalha(jogador,2,presasmorc,pelodemorce); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("aranha negra")){
+                escudoEnfrentBoss = batalha(jogador,3,queliceras,exoaranha);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nOlha, acho que temos alguém com um pouco de esperança aqui em kkkkkkk. se eu fosse você desistia...");
+        ListarFase.listarChefaoDaFase(1);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,1,machadohiena,armadurahiena, escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Olha só, parece que temos um experiente mirim aqui, já que ainda não pretende desistir eu vou te insultar um pouco menos, ta ok?");
+        jogador.setMoeda(20);
+        jogador.setLevel(3);
+        jogador.setSaude(300);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 3
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 3...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(2, 4, 5); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("espectro")){
+                escudoEnfrentBoss = batalha(jogador,4,almafa,poeiraf); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("gargula")){
+                escudoEnfrentBoss = batalha(jogador,5,lascadep,armaduradep);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nHm, você esta começando a se mostrar alguém interessante..");
+        ListarFase.listarChefaoDaFase(2);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,2,cajmag,vestesmag,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Até que foi divertido ver de camarote essa batalha kkk");
+        jogador.setMoeda(30);
+        jogador.setLevel(4);
+        jogador.setSaude(400);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 4
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 4...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(3, 6, 7); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("escorpiao vermelho")){
+                escudoEnfrentBoss = batalha(jogador,6,ferraoven,carapver); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("verme de areia do deserto")){
+                escudoEnfrentBoss = batalha(jogador,7,dentesg,areiap);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nOlha só, acho que estava mesmo te subestimando, éer parabéns pela Vitória");
+        ListarFase.listarChefaoDaFase(3);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,3,bastaodam,sarcofagop,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Ual, você conseguiu mesmo matar o Anubis, eu morria de medo desse cara, como eu posso dizer,.. Obrigado!!");
+        jogador.setMoeda(40);
+        jogador.setLevel(5);
+        jogador.setSaude(500);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 5
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 5...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(4, 8, 9); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("tigre dente de sabre branco")){
+                escudoEnfrentBoss = batalha(jogador,8,dentedes,tunicab); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("gorila gigante")){
+                escudoEnfrentBoss = batalha(jogador,9,maodeg,escudodec);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nCaramba, cuidado pois de agora em diante os monstros antes do Boss ficam cada vez mais fortes");
+        ListarFase.listarChefaoDaFase(4);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,4,bastaorex,esqueletoj,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Parece que alguém vai poder vender uns ossos de dinossouro pra fazer uma grana kkk");
+        jogador.setMoeda(50);
+        jogador.setLevel(6);
+        jogador.setSaude(600);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
+
+        //FASE 6
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 6...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(5, 10, 11); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("leao congelado")){
+                escudoEnfrentBoss = batalha(jogador,10,harpal,jubac); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("golem de gelo")){
+                escudoEnfrentBoss = batalha(jogador,11,estacagel,escudogel);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nBoa Amig... ée posso te chamar disso?");
+        ListarFase.listarChefaoDaFase(5);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,5,furacaogel,nevep,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Hahaha você acabou com ele, muito bom parceiro!!");
+        jogador.setMoeda(60);
+        jogador.setLevel(7);
+        jogador.setSaude(700);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
+
+        //FASE 7
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 7...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(6, 12, 13); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("espirito das chamas")){
+                escudoEnfrentBoss = batalha(jogador,12,triquei,escudocinz); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("fenix")){
+                escudoEnfrentBoss = batalha(jogador,13,arcofogo,armadurachamav);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nNice amigo, agora acaba com a raça desse Boss !! hehe");
+        ListarFase.listarChefaoDaFase(6);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,6,espadaflam,couradrag,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Mais uma criatura das antigas pra conta em kkk, muito bom !!");
+        jogador.setMoeda(70);
+        jogador.setLevel(8);
+        jogador.setSaude(800);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 8
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 8...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(7, 14, 15); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("cavaleiro sem cabeca")){
+                escudoEnfrentBoss = batalha(jogador,14,lancacav,cabecaflam); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("hidra")){
+                escudoEnfrentBoss = batalha(jogador,15,cabechidra,escamahidra);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nBoa amigo, mas por favor tome muito cuidado pois algo me indica que você está cada vez mais próximo do .. FIM !!");
+        ListarFase.listarChefaoDaFase(7);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,7,caudasq,cerebroquim,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Parceiro, eu estou ficando com mau pressentimento, preste muita atenção em suas proximas batalhas, não quero perder meu único amigo..");
+        jogador.setMoeda(80);
+        jogador.setLevel(9);
+        jogador.setSaude(900);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 9
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 9...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(8, 16, 17); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("maxxor")){
+                escudoEnfrentBoss = batalha(jogador,16,chuvap,cancaop); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("cavalo marinho perverso")){
+                escudoEnfrentBoss = batalha(jogador,17,ferraduraaco,chifrecav);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\nEST..CO..DIFICUL...DE..ME..COMUNIC...CO...VOCE..SOCORRO!...");
+        ListarFase.listarChefaoDaFase(8);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,8,tentaculoc,tentaculocd,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("SE..VOC..ESTI...LEND..ISS..SAIBA..QU..EU..NUNC..ESQUECEREI..OBRIGAD..POR..TUDO..");
+        jogador.setMoeda(90);
+        jogador.setLevel(10);
+        jogador.setSaude(1000);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
+        //FASE 10
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Entrando na Fase 10...");
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        ListarFase.listarFase(9, 18, 19); //(int IndiceFase, int IndiceMonstro1, int IndiceMonstro2) 
+        while(true){ //Este while é super importante pois permite que voce possa errar o nome do monstro varias vezes, até acertar um dos dois.
+            System.out.print("\nDigite qual monstro deseja atacar (sem acentos e sem \"ç\"): ");
+            String escolhaMonstro;
+            escolhaMonstro = on.nextLine();
+            /*int forcaMonstro;
+            int escudoMonstro;
+            int indiceMonstro;*/
+            if (escolhaMonstro.equalsIgnoreCase("anjo caido")){
+                escudoEnfrentBoss = batalha(jogador,18,espnegra,assasanjo); //toda lógica da batalha esta simplesmente nisso kkk
+                break;
+                }
+            else if (escolhaMonstro.equalsIgnoreCase("necromancer")){
+                escudoEnfrentBoss = batalha(jogador,19,cajdonecromante,capanecromante);//esse número vai aumentando conforme a ordem em que adicionamos os monstros
+                break;
+            }      
+        }
+        System.out.println("\n...\"barulhos estáticos\" ...");
+        ListarFase.listarChefaoDaFase(9);//este índice 0 é pq é a primeira fase, depois é so ir aumentando nas outras
+        batalhaBoss(jogador,9,presennsup,presensupr,escudoEnfrentBoss);
+        try { Thread.sleep (1000); } catch (InterruptedException ex) {}
+        System.out.println("Não consigo acreditar CONSEGUIMOS !!! Muito obrigado por me salvar, e salvar o Mundo "+ nome+" você foi o melhor amigo que eu já tive, agora podemos COMEMORAR !!!");
+        System.out.println("Estatísticas Finais Abaixo, Parabéns Pela Vitória !!");
+        jogador.setMoeda(90);
+        jogador.setLevel(11);
+        jogador.setSaude(1100);
+        danoClasse = jogador.getClasses().get(0).getForca();
+        escudoClasse = jogador.getClasses().get(0).getDefesa();
+        danoItem = jogador.getClasses().get(0).getItemAtk().get(0).getDanoDeAtk();
+        escudoItem = jogador.getClasses().get(0).getItemDef().get(0).getEscudo();
+        saude = jogador.getSaude();
+        danoTotal = danoClasse + danoItem;
+        escudoTotal = escudoClasse + escudoItem + saude;
+        jogador.listarJogadorPosBoss(jogador);
+        System.out.println("******************************");
+        System.out.println("Dano Total = "+danoTotal);
+        System.out.println("Escudo total = "+escudoTotal);
+        System.out.println("******************************");
+        //fim da fase
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        /** cadastrando e listando itens
-        ItemdeATK a1 = new ItemdeATK("martelo","Martelao enviado dos deuses", 55);
-        ItemdeDEF d1 = new ItemdeDEF("Escudo","Escudo enviado de Narnia", 77);
-        CadastrarItem.addItemATK(a1);
-        CadastrarItem.addItemDEF(d1);
-        ListarItem.editarAtaqueItenATK(a1, 105);
-        ListarItem.listarItensATK();
-        ListarItem.listarItensDEF();
-        
-        // cadastrando e listando classes
-        PadraodasClasses mago = new PadraodasClasses("Mago","Força elevada, porém defesa baixa",95,34);
-        mago.addItemAtk(a1);
-        mago.addItemDef(d1);
-        CadastrarClasse.addClasse(mago);
-        ListarClasse.listarClasse();
-        
-        // cadastrando e listando monstros
-        MonstroNormal m1 = new MonstroNormal("Goblin","Saqueador malandro do vilarejo", 45,25);
-        m1.addItemATK(a1);
-        m1.addItemDEF(d1);
-        Chefao c1 = new Chefao("El diablo","Criatura das trevas, tome cuidado!!",88,200,"Apos ser traido e abandonado pela propria familia, El diblo construiu seu proprio imperio no submundo, jurando tomar o mundo para si");
-        c1.addItemATK(a1);
-        c1.addItemDEF(d1);
-        CadastrarMonstro.addMonstroNormal(m1);
-        CadastrarMonstro.addChefao(c1);
-        ListarMonstros.listarMonstroNormal();
-        ListarMonstros.listarChefao();
-    
-        // cadastrando e listando fases
-        PadraodasFases f1 = new PadraodasFases("Ilha amaldicoada","Lugar assustador onde voce acabou de acordar", 1);
-        CadastrarFase.addMonstroNormal(m1);
-        CadastrarFase.addChefao(c1);
-        CadastrarFase.addFase(f1);
-        ListarFase.listarFase();
-        */
     }
     
 }

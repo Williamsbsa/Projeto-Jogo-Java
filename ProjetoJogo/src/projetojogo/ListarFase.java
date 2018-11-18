@@ -55,12 +55,12 @@ public class ListarFase {
         System.out.println("Escudo item de Def: "+ CadastrarFase.chefao.get(i).itemDef.get(0).getEscudo());        
     
     }    
-    public static void listarFase(int i){
+    public static void listarFase(int i, int indiceMonstro1, int indiceMonstro2){
         System.out.println("\nNome da Fase: "+ CadastrarFase.fases.get(i).nome);
         System.out.println("Descricao: "+ CadastrarFase.fases.get(i).descricao);
         System.out.println("Level: "+ CadastrarFase.fases.get(i).level);
-        listarMonstrosNormaisDaFase(i);
-        listarMonstrosNormaisDaFase(i+1);
+        listarMonstrosNormaisDaFase(indiceMonstro1);
+        listarMonstrosNormaisDaFase(indiceMonstro2);
         //listarChefaoDaFase(i);
     }
     
