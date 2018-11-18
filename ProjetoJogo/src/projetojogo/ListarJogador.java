@@ -67,5 +67,6 @@ public class ListarJogador {
 
     public static void editarEscudoItenDef(ItemdeDEF d1, int escudo){
         d1.setEscudo(escudo);
-    }   
+    }
+
 }
